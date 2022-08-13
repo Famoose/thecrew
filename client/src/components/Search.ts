@@ -13,11 +13,10 @@ export class Search extends WebComponent {
         newValue: string
     ) {
         if (name == 'name-attribute') {
-            // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-            // @ts-ignore
-            this.shadowRoot.querySelector(
-                'a'
-            ).href = `https://www.google.com/search?q=${newValue}`
+            const a = this.shadowRoot.querySelector('a')
+            if (a) {
+                a.innerText = `${newValue}`
+            }
         }
     }
 

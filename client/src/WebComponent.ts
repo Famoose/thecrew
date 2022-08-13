@@ -2,6 +2,7 @@ export abstract class WebComponent extends HTMLElement {
     selector: string
     props: string[]
     shadow = true
+    shadowRoot: ShadowRoot
 
     constructor() {
         super()
@@ -10,11 +11,8 @@ export abstract class WebComponent extends HTMLElement {
         template.innerHTML = this.render()
         const templateContent = template.content
         if (this.shadow) {
-            this.attachShadow({ mode: 'open' })
-
-            if (this.shadowRoot) {
-                this.shadowRoot.appendChild(templateContent.cloneNode(true))
-            }
+            const shadowRoot = this.attachShadow({ mode: 'open' })
+            shadowRoot.appendChild(templateContent.cloneNode(true))
         } else {
             this.appendChild(templateContent.cloneNode(true))
         }
