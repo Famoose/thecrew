@@ -1,0 +1,7 @@
+uploads
+node_modules
+.next
+.idea
+.husky
+dist
+build
