@@ -2,17 +2,20 @@
     "name": "@thecrew/server",
     "version": "1.0.0",
     "description": "backend for the crew game",
-    "main": "dist/server.js",
-    "source": "src/server.ts",
-    "types": "dist/server.d.ts",
+    "module": "dist/index.js",
+    "source": "src/index.ts",
+    "types": "dist/types.d.ts",
     "type": "module",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "node server.js",
+        "start": "npm run build && node dist/index.js",
+        "prewatch": "rimraf dist",
         "watch": "parcel watch",
+        "prebuild": "rimraf dist",
         "build": "parcel build"
     },
     "devDependencies": {
+        "@parcel/packager-ts": "^2.7.0",
         "@parcel/transformer-typescript-types": "^2.7.0",
         "parcel": "^2.7.0",
         "typescript": "^4.7.4"
