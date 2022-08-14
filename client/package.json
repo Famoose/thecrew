@@ -6,16 +6,30 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "preserve": "rimraf dist",
-        "serve": "parcel src/index.html",
+        "serve": "parcel --port 1234 --hmr-port 1236 src/index.html",
         "prebuild": "rimraf dist",
         "build": "parcel build src/index.html"
     },
     "devDependencies": {
         "@parcel/transformer-typescript-types": "^2.7.0",
+        "browserify-zlib": "^0.2.0",
+        "buffer": "^6.0.3",
+        "crypto-browserify": "^3.12.0",
+        "events": "^3.3.0",
         "parcel": "^2.7.0",
-        "typescript": "^4.7.4"
+        "path-browserify": "^1.0.1",
+        "process": "^0.11.10",
+        "querystring-es3": "^0.2.1",
+        "stream-browserify": "^3.0.0",
+        "stream-http": "^3.2.0",
+        "timers-browserify": "^2.0.12",
+        "typescript": "^4.7.4",
+        "url": "^0.11.0"
     },
     "browserslist": "> 0.5%, last 2 versions, not dead",
     "author": "",
-    "license": "ISC"
+    "license": "ISC",
+    "dependencies": {
+        "socket.io-client": "^4.5.1"
+    }
 }
