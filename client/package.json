@@ -6,9 +6,9 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
         "preserve": "rimraf dist",
-        "serve": "parcel --port 1234 --hmr-port 1236 src/index.html",
+        "serve": "parcel --port 1234 --hmr-port 1236 src/*.html",
         "prebuild": "rimraf dist",
-        "build": "parcel build src/index.html"
+        "build": "parcel build src/*.html"
     },
     "devDependencies": {
         "@parcel/transformer-typescript-types": "^2.7.0",
