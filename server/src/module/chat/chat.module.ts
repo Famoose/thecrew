@@ -50,6 +50,7 @@ export const createChatModule = (io: ServerSpecifyType, services: Services) => {
             ) {
                 //join client to roomID
                 socket.join(foundLobby.roomID)
+                _callback(foundLobby.roomID)
 
                 //add session to list if not added yet
                 if (!foundLobby.connectedClients.some((c) => c === session)) {

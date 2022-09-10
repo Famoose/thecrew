@@ -20,6 +20,5 @@ export const createMainModule = (io: ServerSpecifyType, services: Services) => {
             sessionID: socket.data.sessionID || '',
             userID: socket.data.userID || '',
         })
-        socket.emit('')
     })
 }
