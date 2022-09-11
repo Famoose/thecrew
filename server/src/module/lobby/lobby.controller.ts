@@ -1,6 +1,5 @@
-import {SessionService} from "../../services/session.service";
 
-export const createLobbyController = (sessionService: SessionService) => {
+export const createLobbyController = () => {
     const createLobby = function (payload: string) {
         // eslint-disable-next-line @typescript-eslint/no-this-alias
         const socket = this

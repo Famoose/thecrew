@@ -11,6 +11,7 @@ export interface ClientToServerEvents {
         _callback: (roomID: string) => void
     ) => void
     'lobby:create': (p: string) => void
+    'session:get': (_callback: ({sessionID, userID}: { sessionID: string, userID: string }) => void) => void
 }
 
 export interface InterServerEvents {

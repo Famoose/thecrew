@@ -9,7 +9,7 @@ export const createLobbyModule = (
 ) => {
     const { sessionService } = services
 
-    const { createLobby } = createLobbyController(services.sessionService)
+    const { createLobby } = createLobbyController()
 
     const namespace = io.of('lobby')
 

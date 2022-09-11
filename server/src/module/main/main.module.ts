@@ -16,9 +16,18 @@ export const createMainModule = (io: ServerSpecifyType, services: Services) => {
             userID: socket.data.userID || '',
         })
 
+        socket.on('session:get', (_callback) => {
+            console.log('server:session:get')
+            _callback({
+                sessionID: socket.data.sessionID || '',
+                userID: socket.data.userID || '',
+            });
+        });
+
         socket.emit('session', {
             sessionID: socket.data.sessionID || '',
             userID: socket.data.userID || '',
         })
+
     })
 }
