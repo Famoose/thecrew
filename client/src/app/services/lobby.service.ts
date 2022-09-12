@@ -5,7 +5,14 @@ import { LobbySocket } from '../config/socket.config'
     providedIn: 'root',
 })
 export class LobbyService {
-    constructor(private lobbySocket: LobbySocket) {}
+    constructor(private lobbySocket: LobbySocket) {
+        lobbySocket.on('connect_error', (err: { message: any }) => {
+            console.log(err.message) // prints the message associated with the error
+        })
+        lobbySocket.on('error', (err: { message: any }) => {
+            console.log(err.message) // prints the message associated with the error
+        })
+    }
 
     createLobby() {
         this.lobbySocket.emit('lobby:create')

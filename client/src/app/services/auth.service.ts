@@ -1,17 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core'
+import { Subject } from 'rxjs'
 
 const SESSION_ID_KEY = 'sessionID'
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root',
 })
 export class AuthService {
+    onUpdateCredentials$ = new Subject<string>()
 
-  setSessionID = (key: string) => {
-    return localStorage.setItem(SESSION_ID_KEY, key)
-  }
+    setSessionID(key: string) {
+        this.onUpdateCredentials$.next(key)
+        return localStorage.setItem(SESSION_ID_KEY, key)
+    }
 
-  getSessionID = () => {
-    return localStorage.getItem(SESSION_ID_KEY)
-  }
+    getSessionID() {
+        return localStorage.getItem(SESSION_ID_KEY)
+    }
 }

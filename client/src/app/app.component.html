@@ -1,5 +1,9 @@
 <div>
-    <div style="height: 500px; width: 100%"></div>
+    <div style="height: 500px; width: 100%">
+        <ul>
+            <li *ngFor="let m of messages">{{ m }}</li>
+        </ul>
+    </div>
 
     <button (click)="createLobby()">create lobby</button>
 

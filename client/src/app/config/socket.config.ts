@@ -11,11 +11,15 @@ export class MainSocket extends Socket {
                 path: '/api',
             },
         })
+        this.updateCredentials(this.authService.getSessionID())
+        authService.onUpdateCredentials$.subscribe((sessionID) => {
+            this.updateCredentials(sessionID)
+        })
+    }
+
+    updateCredentials(sessionID: string | null) {
         this.ioSocket.auth = {
-            token: (() =>
-                this.authService.getSessionID()
-                    ? this.authService.getSessionID()
-                    : '')(),
+            token: (() => (sessionID ? sessionID : ''))(),
         }
     }
 }
@@ -29,11 +33,15 @@ export class LobbySocket extends Socket {
                 path: '/api',
             },
         })
+        this.updateCredentials(this.authService.getSessionID())
+        authService.onUpdateCredentials$.subscribe((sessionID) => {
+            this.updateCredentials(sessionID)
+        })
+    }
+
+    updateCredentials(sessionID: string | null) {
         this.ioSocket.auth = {
-            token: (() =>
-                this.authService.getSessionID()
-                    ? this.authService.getSessionID()
-                    : '')(),
+            token: (() => (sessionID ? sessionID : ''))(),
         }
     }
 }
@@ -47,11 +55,15 @@ export class ChatSocket extends Socket {
                 path: '/api',
             },
         })
+        this.updateCredentials(this.authService.getSessionID())
+        authService.onUpdateCredentials$.subscribe((sessionID) => {
+            this.updateCredentials(sessionID)
+        })
+    }
+
+    updateCredentials(sessionID: string | null) {
         this.ioSocket.auth = {
-            token: (() =>
-                this.authService.getSessionID()
-                    ? this.authService.getSessionID()
-                    : '')(),
+            token: (() => (sessionID ? sessionID : ''))(),
         }
     }
 }

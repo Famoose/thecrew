@@ -10,6 +10,7 @@ import { ChatService } from './services/chat.service'
 })
 export class AppComponent implements OnInit {
     message = ''
+    messages: string[] = []
 
     constructor(
         private mainService: MainService,
@@ -22,12 +23,13 @@ export class AppComponent implements OnInit {
 
     ngOnInit(): void {
         this.chatService.receiveMessage().subscribe((newMessage: string) => {
-            console.log(newMessage)
+            this.messages.push(newMessage)
         })
     }
 
     createLobby() {
         this.lobbyService.createLobby()
+        this.chatService.joinChatGroup()
     }
 
     sendMessage() {

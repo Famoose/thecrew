@@ -8,15 +8,27 @@ export const createChatController = (
     chatService: ChatService
 ) => {
     const joinChatGroup = function () {
-        const session = sessionService.checkValidSession(this.data.sessionID)
-        const groupID = chatService.tryGetChatGroupID(session)
-        this.join(groupID)
+        try {
+            const session = sessionService.checkValidSession(
+                this.handshake.auth.token
+            )
+            const groupID = chatService.tryGetChatGroupID(session)
+            this.join(groupID)
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     const sendMessage = function (message: string) {
-        const session = sessionService.checkValidSession(this.data.sessionID)
-        const groupID = chatService.tryGetChatGroupID(session)
-        namespace.in(groupID).emit('onMessageSent', message)
+        try {
+            const session = sessionService.checkValidSession(
+                this.handshake.auth.token
+            )
+            const groupID = chatService.tryGetChatGroupID(session)
+            namespace.in(groupID).emit('onMessageSent', message)
+        } catch (e) {
+            console.error(e)
+        }
     }
 
     return { joinChatGroup, sendMessage }

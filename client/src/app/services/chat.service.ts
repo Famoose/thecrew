@@ -6,7 +6,14 @@ import { Observable } from 'rxjs'
     providedIn: 'root',
 })
 export class ChatService {
-    constructor(private chatSocket: ChatSocket) {}
+    constructor(private chatSocket: ChatSocket) {
+        chatSocket.on('connect_error', (err: { message: any }) => {
+            console.log(err.message) // prints the message associated with the error
+        })
+        chatSocket.on('error', (err: { message: any }) => {
+            console.log(err.message) // prints the message associated with the error
+        })
+    }
 
     joinChatGroup() {
         this.chatSocket.emit('joinChatGroup')

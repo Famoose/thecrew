@@ -9,7 +9,14 @@ export class MainService {
     constructor(
         private mainSocket: MainSocket,
         private authService: AuthService
-    ) {}
+    ) {
+        mainSocket.on('connect_error', (err: { message: any }) => {
+            console.log(err.message) // prints the message associated with the error
+        })
+        mainSocket.on('error', (err: { message: any }) => {
+            console.log(err.message) // prints the message associated with the error
+        })
+    }
 
     authenticate() {
         this.mainSocket.emit(
