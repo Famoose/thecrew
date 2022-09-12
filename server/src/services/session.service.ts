@@ -5,6 +5,7 @@ export type SessionService = {
     findSession(id: string): Session | undefined
     saveSession(id: string, session: Session): void
     findAllSessions(): Session[]
+    checkValidSession(sessionID: string | undefined): Session
 }
 
 export const createSessionService = (
@@ -13,5 +14,14 @@ export const createSessionService = (
     const findSession = sessionRepository.findSession
     const saveSession = sessionRepository.saveSession
     const findAllSessions = sessionRepository.findAllSessions
-    return { findSession, saveSession, findAllSessions }
+
+    const checkValidSession = (sessionID: string | undefined) => {
+        const foundSession = findSession(sessionID || '')
+        if (!foundSession) {
+            throw new Error(`no session found for ID: ${sessionID}`)
+        }
+        return foundSession
+    }
+
+    return { findSession, saveSession, findAllSessions, checkValidSession }
 }

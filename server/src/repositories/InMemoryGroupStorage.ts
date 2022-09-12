@@ -1,4 +1,4 @@
-import {Session} from "./InMemorySessionStorage";
+import { Session } from './InMemorySessionStorage'
 
 export interface GroupStorage {
     findGroup(id: string): Group | undefined
@@ -7,7 +7,8 @@ export interface GroupStorage {
 }
 
 export type Group = {
-    groupMembers: Session[];
+    groupID: string
+    groupMembers: Session[]
 }
 
 export class InMemoryGroupStore implements GroupStorage {

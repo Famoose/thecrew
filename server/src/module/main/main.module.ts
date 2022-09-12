@@ -9,10 +9,14 @@ export const createMainModule = (io: ServerSpecifyType, services: Services) => {
     io.use(createMiddleware(sessionService).createAndCheckSession)
 
     io.on('connection', (socket: Socket) => {
-        console.log(socket.id)
-
         const sessionID = socket.data.sessionID || ''
+
         sessionService.saveSession(sessionID, {
+            userID: socket.data.userID || '',
+        })
+
+        socket.emit('session', {
+            sessionID: socket.data.sessionID || '',
             userID: socket.data.userID || '',
         })
 
@@ -21,13 +25,7 @@ export const createMainModule = (io: ServerSpecifyType, services: Services) => {
             _callback({
                 sessionID: socket.data.sessionID || '',
                 userID: socket.data.userID || '',
-            });
-        });
-
-        socket.emit('session', {
-            sessionID: socket.data.sessionID || '',
-            userID: socket.data.userID || '',
+            })
         })
-
     })
 }

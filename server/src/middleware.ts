@@ -8,7 +8,8 @@ export const createMiddleware = (storage: SessionService) => {
         socket: Socket,
         next: (err?: ExtendedError) => void
     ) => {
-        const sessionID = socket.handshake.auth.sessionID
+        const sessionID = socket.handshake.auth.token
+        console.log(`sessionID: ${sessionID} send request`)
         if (sessionID) {
             // find existing session
             const session = storage.findSession(sessionID)
@@ -28,7 +29,8 @@ export const createMiddleware = (storage: SessionService) => {
         socket: Socket,
         next: (err?: ExtendedError) => void
     ) => {
-        const sessionID = socket.handshake.auth.sessionID
+        const sessionID = socket.handshake.auth.token
+        console.log(`sessionID: ${sessionID} send request`)
         if (sessionID) {
             // find existing session
             const session = storage.findSession(sessionID)

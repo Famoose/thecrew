@@ -1,8 +1,6 @@
 export interface ServerToClientEvents {
-    noArg: () => void
-    basicEmit: (a: number, b: string, c: Buffer) => void
-    withAck: (d: string, callback: (e: number) => void) => void
     session: (session: { sessionID: string; userID: string }) => void
+    onMessageSent: (message: string) => void
 }
 
 export interface ClientToServerEvents {
@@ -11,7 +9,19 @@ export interface ClientToServerEvents {
         _callback: (roomID: string) => void
     ) => void
     'lobby:create': (p: string) => void
-    'session:get': (_callback: ({sessionID, userID}: { sessionID: string, userID: string }) => void) => void
+
+    joinChatGroup: () => void
+    sendMessage: (message: string) => void
+
+    'session:get': (
+        _callback: ({
+            sessionID,
+            userID,
+        }: {
+            sessionID: string
+            userID: string
+        }) => void
+    ) => void
 }
 
 export interface InterServerEvents {
