@@ -4,7 +4,7 @@ import { ExtendedError } from 'socket.io/dist/namespace'
 import { SessionService } from './services/session.service'
 
 export const createMiddleware = (storage: SessionService) => {
-    const createAndCheckSession = (
+    const createAndCheckSession = async (
         socket: Socket,
         next: (err?: ExtendedError) => void
     ) => {
@@ -12,7 +12,7 @@ export const createMiddleware = (storage: SessionService) => {
         console.log(`sessionID: ${sessionID} send request`)
         if (sessionID) {
             // find existing session
-            const session = storage.findSession(sessionID)
+            const session = await storage.findSession(sessionID)
             if (session) {
                 socket.data.sessionID = sessionID
                 socket.data.userID = session.userID
@@ -25,7 +25,7 @@ export const createMiddleware = (storage: SessionService) => {
         next()
     }
 
-    const checkSession = (
+    const checkSession = async (
         socket: Socket,
         next: (err?: ExtendedError) => void
     ) => {
@@ -33,7 +33,7 @@ export const createMiddleware = (storage: SessionService) => {
         console.log(`sessionID: ${sessionID} send request`)
         if (sessionID) {
             // find existing session
-            const session = storage.findSession(sessionID)
+            const session = await storage.findSession(sessionID)
             if (session) {
                 socket.data.sessionID = sessionID
                 socket.data.userID = session.userID

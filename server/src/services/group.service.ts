@@ -1,44 +1,47 @@
 import crypto from 'crypto'
 
-import { Session } from '../repositories/InMemorySessionStorage'
-import { GroupRepository } from '../repositories/group.repository'
-import { Group } from '../repositories/InMemoryGroupStorage'
+import { Group, GroupRepository } from '../repositories/group.repository'
+import { Session } from '../repositories/session.repository'
 
 export type GroupService = {
-    createGroup(): Group
-    joinGroup(id: string, session: Session): void
-    leaveGroup(id: string, session: Session): void
-    findGroupBySession(session: Session): Group | undefined
+    createGroup(): Promise<Group>
+    joinGroup(id: string, session: Session): Promise<void>
+    leaveGroup(id: string, session: Session): Promise<void>
+    findGroupBySession(session: Session): Promise<Group | null>
 }
 
 export const createGroupService = (
     groupRepository: GroupRepository
 ): GroupService => {
-    const createGroup = () => {
+    const createGroup = async () => {
         const groupID = crypto.randomUUID()
-        const group = { groupID, groupMembers: [] }
-        groupRepository.saveGroup(groupID, group)
+        const group = { _id: groupID, groupMembers: [] }
+        await groupRepository.createGroup(group)
         return group
     }
-    const joinGroup = (id: string, session: Session) => {
-        const foundGroup = groupRepository.findGroup(id)
+
+    const joinGroup = async (id: string, session: Session) => {
+        const foundGroup = await groupRepository.findGroup(id)
         if (foundGroup) {
             foundGroup.groupMembers = [...foundGroup.groupMembers, session]
-            groupRepository.saveGroup(id, foundGroup)
+            await groupRepository.updateGroup(foundGroup)
         }
     }
-    const leaveGroup = (id: string, session: Session) => {
-        const foundGroup = groupRepository.findGroup(id)
+
+    const leaveGroup = async (id: string, session: Session) => {
+        const foundGroup = await groupRepository.findGroup(id)
         if (foundGroup) {
             const index = foundGroup.groupMembers.indexOf(session)
             if (index !== -1) {
                 foundGroup.groupMembers.splice(index, 1)
-                groupRepository.saveGroup(id, foundGroup)
+                await groupRepository.updateGroup(foundGroup)
             }
         }
     }
-    const findGroupBySession = (session: Session) => {
-        return groupRepository.findGroupBySession(session)
+
+    const findGroupBySession = async (session: Session) => {
+        return await groupRepository.findGroupBySession(session)
     }
+
     return { createGroup, joinGroup, leaveGroup, findGroupBySession }
 }

@@ -1,27 +1,26 @@
-import { SessionRepository } from '../repositories/session.repository'
-import { Session } from '../repositories/InMemorySessionStorage'
+import { Session, SessionRepository } from '../repositories/session.repository'
 
 export type SessionService = {
-    findSession(id: string): Session | undefined
-    saveSession(id: string, session: Session): void
-    findAllSessions(): Session[]
-    checkValidSession(sessionID: string | undefined): Session
+    findSession(id: string): Promise<Session | null>
+    createSession(session: Session): Promise<boolean>
+    findAllSessions(): Promise<Session[]>
+    checkValidSession(sessionID: string | undefined): Promise<Session>
 }
 
 export const createSessionService = (
     sessionRepository: SessionRepository
 ): SessionService => {
     const findSession = sessionRepository.findSession
-    const saveSession = sessionRepository.saveSession
+    const createSession = sessionRepository.createSession
     const findAllSessions = sessionRepository.findAllSessions
 
-    const checkValidSession = (sessionID: string | undefined) => {
-        const foundSession = findSession(sessionID || '')
+    const checkValidSession = async (sessionID: string | undefined) => {
+        const foundSession = await findSession(sessionID || '')
         if (!foundSession) {
             throw new Error(`no session found for ID: ${sessionID}`)
         }
         return foundSession
     }
 
-    return { findSession, saveSession, findAllSessions, checkValidSession }
+    return { findSession, createSession, findAllSessions, checkValidSession }
 }

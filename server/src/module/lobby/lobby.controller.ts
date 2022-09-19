@@ -1,6 +1,6 @@
 import { GroupService } from '../../services/group.service'
 import { SessionService } from '../../services/session.service'
-import { Session } from '../../repositories/InMemorySessionStorage'
+import { Session } from '../../repositories/session.repository'
 
 type Lobby = {
     invitationLink: string
@@ -23,28 +23,27 @@ export const createLobbyController = (
     sessionService: SessionService,
     groupService: GroupService
 ) => {
-    const createLobby = function () {
+    const createLobby = async function () {
         try {
-            const session = sessionService.checkValidSession(
+            const session = await sessionService.checkValidSession(
                 this.handshake.auth.token
             )
-            const group = groupService.createGroup()
-            groupService.joinGroup(group.groupID, session)
-            this.join(group.groupID)
-            console.info(
-                `Session:${session.userID} joined group: ${group.groupID}`
-            )
+            const group = await groupService.createGroup()
+            await groupService.joinGroup(group._id, session)
+            this.join(group._id)
+            console.info(`Session:${session.userID} joined group: ${group._id}`)
         } catch (e) {
             console.error(e)
         }
     }
 
-    const followInvitationLink = function (
+    // TODO should be refactored
+    const followInvitationLink = async function (
         link: string,
         _callback: (arg0: string) => void
     ) {
         try {
-            const session = sessionService.checkValidSession(
+            const session = await sessionService.checkValidSession(
                 this.handshake.auth.token
             )
             const foundLobby = lobbies.find(

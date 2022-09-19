@@ -8,12 +8,17 @@ export const createMainModule = (io: ServerSpecifyType, services: Services) => {
 
     io.use(createMiddleware(sessionService).createAndCheckSession)
 
-    io.on('connection', (socket: Socket) => {
+    io.on('connection', async (socket: Socket) => {
         const sessionID = socket.data.sessionID || ''
 
-        sessionService.saveSession(sessionID, {
-            userID: socket.data.userID || '',
-        })
+        const session = await sessionService.findSession(sessionID)
+
+        if (!session) {
+            await sessionService.createSession({
+                _id: sessionID,
+                userID: socket.data.userID || '',
+            })
+        }
 
         socket.emit('session', {
             sessionID: socket.data.sessionID || '',
