@@ -1,7 +1,16 @@
 <h1>Lobbies List</h1>
-<div style="height: 500px; width: 100%">
-  <ul>
-    <li *ngFor="let l of lobbies">{{ l }}</li>
-  </ul>
-</div>
+<table>
+  <tr>
+    <th></th>
+    <th>Player</th>
+    <th>Mission</th>
+    <th>State</th>
+  </tr>
+  <tr *ngFor="let lobby of lobbies">
+    <td><button routerLink="/lobby/{{lobby.groupID}}" routerLinkActive="active" ariaCurrentWhenActive="page">join</button></td>
+    <td>{{lobby.player}}</td>
+    <td>{{lobby.mission}}</td>
+    <td>{{lobby.state}}</td>
+  </tr>
+</table>
 <router-outlet></router-outlet>
