@@ -22,9 +22,6 @@ export class HomeComponent implements OnInit {
 
   createLobby() {
     this.lobbyService.createLobby()
-  }
-
-  listLobbies() {
-    //
+    //Antwort bekommen this.router (Konstruktor), etwas next /lobby und group Id mitgeben
   }
 }
