@@ -6,12 +6,8 @@
 <div>
   <h1>Home - The Crew</h1>
   <div>
-    <a routerLink="lobby/036c7a80-4d74-4a6d-bff5-79877ccfaabc" routerLinkActive="active" ariaCurrentWhenActive="page">
-      <button (click)="createLobby()">create lobby</button>
-    </a>
-    <a routerLink="lobbieslist" routerLinkActive="active" ariaCurrentWhenActive="page">
-      <button>list lobbies</button>
-    </a>
+    <button (click)="createLobby()">create lobby</button>
+    <button routerLink="lobbieslist" routerLinkActive="active" ariaCurrentWhenActive="page">list lobbies</button>
   </div>
   <router-outlet></router-outlet>
 </div>

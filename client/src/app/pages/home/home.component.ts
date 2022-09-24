@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {MainService} from "../../services/main.service";
 import {LobbyService} from "../../services/lobby.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-home',
@@ -10,7 +11,8 @@ import {LobbyService} from "../../services/lobby.service";
 export class HomeComponent implements OnInit {
 
   constructor(private mainService: MainService,
-              private lobbyService: LobbyService
+              private lobbyService: LobbyService,
+              private router: Router
   ) {
     console.log('begin authenticate')
     mainService.authenticate()
@@ -22,6 +24,7 @@ export class HomeComponent implements OnInit {
 
   createLobby() {
     this.lobbyService.createLobby()
-    //Antwort bekommen this.router (Konstruktor), etwas next /lobby und group Id mitgeben
+    this.router.navigate(["/lobby/42"])
+    //Antwort bekommen etwas next /lobby und group Id mitgeben
   }
 }
