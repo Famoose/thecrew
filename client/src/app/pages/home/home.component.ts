@@ -8,23 +8,17 @@ import {Router} from "@angular/router";
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent {
 
   constructor(private mainService: MainService,
               private lobbyService: LobbyService,
               private router: Router
   ) {
-    console.log('begin authenticate')
-    mainService.authenticate()
-  }
-
-  ngOnInit(): void {
-    console.log("initiated")
   }
 
   createLobby() {
-    this.lobbyService.createLobby()
-    this.router.navigate(["/lobby/42"])
-    //Antwort bekommen etwas next /lobby und group Id mitgeben
+    this.lobbyService.createLobby().subscribe((groupId) => {
+      this.router.navigate(['lobby', groupId])
+    });
   }
 }

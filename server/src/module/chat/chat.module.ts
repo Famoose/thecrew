@@ -7,8 +7,6 @@ export const createChatModule = (io: ServerSpecifyType, services: Services) => {
 
     const namespace = io.of('chat')
 
-    //namespace.use(createMiddleware(sessionService).checkSession)
-
     const { joinChatGroup, sendMessage } = createChatController(
         namespace,
         sessionService,

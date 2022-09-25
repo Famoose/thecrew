@@ -1,23 +1,25 @@
+import {Lobby} from "./repositories/lobby.repository";
+
 export interface ServerToClientEvents {
     session: (session: { sessionID: string; userID: string }) => void
     onMessageSent: (message: string) => void
 }
 
 export interface ClientToServerEvents {
-    followInvitationLink: (
-        link: string,
-        _callback: (roomID: string) => void
+    'lobby:join': (
+        groupId: string,
+        _callback: (lobby: Lobby | null) => void
     ) => void
-    'lobby:create': (p: string) => void
+    'lobby:create': (_callback: (groupId: string | null) => void) => void
+    'lobby:all': (_callback: (lobbies: Lobby[]) => void) => void,
 
     joinChatGroup: () => void
     sendMessage: (message: string) => void
-
     'session:get': (
         _callback: ({
-            sessionID,
-            userID,
-        }: {
+                        sessionID,
+                        userID,
+                    }: {
             sessionID: string
             userID: string
         }) => void

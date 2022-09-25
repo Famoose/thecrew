@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 import {LobbyService} from "../../services/lobby.service";
 import {ChatService} from "../../services/chat.service";
 
@@ -9,22 +9,27 @@ import {ChatService} from "../../services/chat.service";
   styleUrls: ['./lobby.component.scss']
 })
 export class LobbyComponent implements OnInit {
- groupID = ""
+  groupId = ""
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private lobbyService: LobbyService,
-    private chatService: ChatService
-  ) { }
+    private router: Router
+  ) {
+  }
+
+  lobby: any = null
 
   ngOnInit(): void {
-    this.activatedRoute.queryParams.subscribe(params => {
-      this.groupID = params['groupID'];
+    this.activatedRoute.params.subscribe(params => {
+      this.groupId = params['groupId'];
+      this.lobbyService.joinLobby(this.groupId).subscribe((lobby) => {
+        this.lobby = lobby;
+      }, () => {
+        console.log('group not found')
+        this.router.navigate(['/'])
+      })
     })
-    this.lobbyService.followInvitationLink(this.groupID)
-    this.chatService.joinChatGroup() //groupID auch mitgeben?
-    //this.lobbyService join lobby (bei Lobby)
-    // this.chat --> id übergeben
   }
 
 }

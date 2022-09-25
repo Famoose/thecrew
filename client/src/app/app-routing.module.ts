@@ -7,7 +7,7 @@ import {LobbyComponent} from "./pages/lobby/lobby.component";
 const routes: Routes = [
   { path: '', component: HomeComponent},
   { path: 'lobbieslist', component: LobbieslistComponent},
-  { path: 'lobby/:groupID', component: LobbyComponent}
+  { path: 'lobby/:groupId', component: LobbyComponent}
 ];
 
 @NgModule({

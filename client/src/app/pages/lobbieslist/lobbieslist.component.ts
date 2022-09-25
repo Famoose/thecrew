@@ -28,14 +28,13 @@ const lobbies = [
   styleUrls: ['./lobbieslist.component.scss']
 })
 export class LobbieslistComponent implements OnInit {
-  lobbies = lobbies; // muss später durch Daten vom Server ersetzt werden
+  lobbies: any;
 
   constructor(private lobbyService: LobbyService) {
-    console.log("lobbieslist initiated")
   }
 
   ngOnInit(): void {
-    //
+    this.lobbyService.getAllLobbies().subscribe(lobbies => this.lobbies = lobbies)
   }
 
 }

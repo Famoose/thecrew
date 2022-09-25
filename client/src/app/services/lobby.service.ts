@@ -1,26 +1,49 @@
-import { Injectable } from '@angular/core'
-import { LobbySocket } from '../config/socket.config'
+import {Injectable} from '@angular/core'
+import {LobbySocket} from '../config/socket.config'
+import {Observable} from "rxjs";
 
 @Injectable({
-    providedIn: 'root',
+  providedIn: 'root',
 })
 export class LobbyService {
-    constructor(private lobbySocket: LobbySocket) {
-        lobbySocket.on('connect_error', (err: { message: any }) => {
-            console.log(err.message) // prints the message associated with the error
-        })
-        lobbySocket.on('error', (err: { message: any }) => {
-            console.log(err.message) // prints the message associated with the error
-        })
-    }
+  constructor(private lobbySocket: LobbySocket) {
+    lobbySocket.on('connect_error', (err: { message: any }) => {
+      console.log(err.message) // prints the message associated with the error
+    })
+    lobbySocket.on('error', (err: { message: any }) => {
+      console.log(err.message) // prints the message associated with the error
+    })
+  }
 
-    createLobby() {
-        this.lobbySocket.emit('lobby:create')
-    }
+  createLobby() {
+    return new Observable((observer) => {
+      this.lobbySocket.emit('lobby:create', (groupId: string) => {
+        if (groupId) {
+          observer.next(groupId)
+        } else {
+          observer.error('Failed to create lobby')
+        }
+      })
+    });
+  }
 
-    followInvitationLink(link: string) {
-        this.lobbySocket.emit('followInvitationLink', link, () => {
-            //
-        })
+  joinLobby(groupId: string) {
+    return new Observable((observer) => {
+      this.lobbySocket.emit('lobby:join', groupId, (lobby: any | null) => {
+        if (lobby) {
+          observer.next(lobby)
+        } else {
+          observer.error('failed to join lobby')
+        }
+      })
+    });
+  }
+
+  getAllLobbies() {
+    return new Observable((observer) => {
+      this.lobbySocket.emit('lobby:all', (lobbies: any[]) => {
+        observer.next(lobbies)
+      })
+    })
     }
 }

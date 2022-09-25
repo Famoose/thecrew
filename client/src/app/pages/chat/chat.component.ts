@@ -12,15 +12,14 @@ export class ChatComponent implements OnInit {
   messages: string[] = []
 
   constructor(private mainService: MainService,
-              private chatService: ChatService,) {
-    console.log('begin authenticate')
-    mainService.authenticate()
+              private chatService: ChatService) {
   }
 
   ngOnInit(): void {
     this.chatService.receiveMessage().subscribe((newMessage: string) => {
       this.messages.push(newMessage)
     })
+    //todo: call join chat by group id
   }
 
   sendMessage() {

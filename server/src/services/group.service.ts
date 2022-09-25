@@ -5,7 +5,8 @@ import { Session } from '../repositories/session.repository'
 
 export type GroupService = {
     createGroup(): Promise<Group>
-    joinGroup(id: string, session: Session): Promise<void>
+    joinGroup(id: string, session: Session): Promise<Group>
+    findGroupById(id: string): Promise<Group | null>
     leaveGroup(id: string, session: Session): Promise<void>
     findGroupBySession(session: Session): Promise<Group | null>
 }
@@ -25,7 +26,9 @@ export const createGroupService = (
         if (foundGroup) {
             foundGroup.groupMembers = [...foundGroup.groupMembers, session]
             await groupRepository.updateGroup(foundGroup)
+            return foundGroup;
         }
+        throw new Error("Group not Found")
     }
 
     const leaveGroup = async (id: string, session: Session) => {
@@ -43,5 +46,9 @@ export const createGroupService = (
         return await groupRepository.findGroupBySession(session)
     }
 
-    return { createGroup, joinGroup, leaveGroup, findGroupBySession }
+    const findGroupById = async (groupId: string) => {
+        return await groupRepository.findGroup(groupId)
+    }
+
+    return { createGroup, joinGroup, leaveGroup, findGroupBySession, findGroupById }
 }
