@@ -8,10 +8,11 @@ import { SocketIoModule } from 'ngx-socket-io'
 import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { LobbieslistComponent } from './pages/lobbieslist/lobbieslist.component';
-import { LobbyComponent } from './pages/lobby/lobby.component'
+import { LobbyComponent } from './pages/lobby/lobby.component';
+import { ChatComponent } from './pages/chat/chat.component'
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, LobbieslistComponent, LobbyComponent],
+    declarations: [AppComponent, HomeComponent, LobbieslistComponent, LobbyComponent, ChatComponent],
     imports: [BrowserModule, AppRoutingModule, SocketIoModule, FormsModule],
     providers: [MainSocket, LobbySocket, ChatSocket],
     bootstrap: [AppComponent],
