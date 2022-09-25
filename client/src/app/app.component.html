@@ -1,12 +1,1 @@
-<div>
-    <div style="height: 500px; width: 100%">
-        <ul>
-            <li *ngFor="let m of messages">{{ m }}</li>
-        </ul>
-    </div>
-
-    <button (click)="createLobby()">create lobby</button>
-
-    <input [(ngModel)]="message" required />
-    <button (click)="sendMessage()">sendMessage</button>
-</div>
+<router-outlet></router-outlet>
