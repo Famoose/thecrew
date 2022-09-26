@@ -9,6 +9,7 @@ export type GroupService = {
     findGroupById(id: string): Promise<Group | null>
     leaveGroup(id: string, session: Session): Promise<void>
     findGroupBySession(session: Session): Promise<Group | null>
+    isSessionInGroup(group: Group, session: Session): boolean
 }
 
 export const createGroupService = (
@@ -26,9 +27,9 @@ export const createGroupService = (
         if (foundGroup) {
             foundGroup.groupMembers = [...foundGroup.groupMembers, session]
             await groupRepository.updateGroup(foundGroup)
-            return foundGroup;
+            return foundGroup
         }
-        throw new Error("Group not Found")
+        throw new Error('Group not Found')
     }
 
     const leaveGroup = async (id: string, session: Session) => {
@@ -50,5 +51,19 @@ export const createGroupService = (
         return await groupRepository.findGroup(groupId)
     }
 
-    return { createGroup, joinGroup, leaveGroup, findGroupBySession, findGroupById }
+    const isSessionInGroup = (group: Group, session: Session) => {
+        return (
+            group.groupMembers.find((member) => member._id === session._id) !==
+            undefined
+        )
+    }
+
+    return {
+        createGroup,
+        joinGroup,
+        leaveGroup,
+        findGroupBySession,
+        findGroupById,
+        isSessionInGroup,
+    }
 }

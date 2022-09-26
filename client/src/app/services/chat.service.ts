@@ -15,15 +15,21 @@ export class ChatService {
         })
     }
 
-    joinChatGroup() {
-        this.chatSocket.emit('joinChatGroup')
+    joinChatGroup(groupId: string) {
+        return new Observable((observer) => {
+            this.chatSocket.emit('joinChatGroup', groupId, () => {
+                observer.next()
+            })
+        })
     }
 
-    sendMessage(message: string) {
-        this.chatSocket.emit('sendMessage', message)
+    sendMessage(groupId: string, message: string) {
+        this.chatSocket.emit('sendMessage', groupId, message)
     }
 
-    receiveMessage(): Observable<string> {
-        return this.chatSocket.fromEvent('onMessageSent')
+    receiveMessage(): Observable<{ groupId: string; message: string }> {
+        return this.chatSocket.fromEvent<{ groupId: string; message: string }>(
+            'onMessageSent'
+        )
     }
 }

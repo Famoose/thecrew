@@ -10,8 +10,11 @@ export class AuthService {
     onUpdateCredentials$ = new Subject<string>()
 
     setSessionID(key: string) {
-        this.onUpdateCredentials$.next(key)
-        return localStorage.setItem(SESSION_ID_KEY, key)
+        if (key !== this.getSessionID()) {
+            console.log('update session: ' + key)
+            this.onUpdateCredentials$.next(key)
+            return localStorage.setItem(SESSION_ID_KEY, key)
+        }
     }
 
     getSessionID() {

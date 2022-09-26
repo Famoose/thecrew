@@ -51,11 +51,7 @@ export const createLobbyService = (
         if (group) {
             const lobby = await findLobbyByGroup(group)
             if (lobby) {
-                if (
-                    group.groupMembers.find(
-                        (member) => member._id === session._id
-                    )
-                ) {
+                if (groupService.isSessionInGroup(group, session)) {
                     return lobby
                 }
                 if (lobby.maxAllowedPlayer > lobby.group.groupMembers.length) {

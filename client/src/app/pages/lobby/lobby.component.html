@@ -4,4 +4,4 @@
   </div>
 </div>
 {{lobby | json}}
-<app-chat></app-chat>
+<app-chat *ngIf="groupId && lobby" [groupId]="groupId"></app-chat>

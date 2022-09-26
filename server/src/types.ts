@@ -6,7 +6,7 @@ export { Lobby, Group, Session }
 
 export interface ServerToClientEvents {
     session: (session: { sessionID: string; userID: string }) => void
-    onMessageSent: (message: string) => void
+    onMessageSent: (message: { groupId: string; message: string }) => void
 }
 
 export interface ClientToServerEvents {
@@ -17,8 +17,8 @@ export interface ClientToServerEvents {
     'lobby:create': (_callback: (groupId: string | null) => void) => void
     'lobby:all': (_callback: (lobbies: Lobby[]) => void) => void
 
-    joinChatGroup: () => void
-    sendMessage: (message: string) => void
+    joinChatGroup: (groupId: string, _callback: () => void) => void
+    sendMessage: (groupId: string, message: string) => void
     'session:get': (
         _callback: ({
             sessionID,
