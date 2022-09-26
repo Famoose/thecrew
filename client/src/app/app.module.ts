@@ -9,10 +9,11 @@ import { FormsModule } from '@angular/forms';
 import { HomeComponent } from './pages/home/home.component';
 import { LobbieslistComponent } from './pages/lobbieslist/lobbieslist.component';
 import { LobbyComponent } from './pages/lobby/lobby.component';
-import { ChatComponent } from './pages/chat/chat.component'
+import { ChatComponent } from './pages/chat/chat.component';
+import { GameComponent } from './pages/game/game.component'
 
 @NgModule({
-    declarations: [AppComponent, HomeComponent, LobbieslistComponent, LobbyComponent, ChatComponent],
+    declarations: [AppComponent, HomeComponent, LobbieslistComponent, LobbyComponent, ChatComponent, GameComponent],
     imports: [BrowserModule, AppRoutingModule, SocketIoModule, FormsModule],
     providers: [MainSocket, LobbySocket, ChatSocket],
     bootstrap: [AppComponent],

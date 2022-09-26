@@ -1,8 +1,18 @@
-<div class="home-container">
-  <h1>Home - The Crew</h1>
-  <div>
-    <button (click)="createLobby()">create lobby</button>
-    <button routerLink="lobbieslist" routerLinkActive="active" ariaCurrentWhenActive="page">list lobbies</button>
+<div class="container d-flex h-100 p-3 mx-auto flex-column">
+  <div class="mb-5">
+    <h1 class="heading">The Crew</h1>
+  </div>
+  <div class="home-div-buttons">
+    <div class="home-container-btn">
+      <h2>Search Lobby</h2>
+      <p>Search for listed game lobbies to join.</p>
+      <button class="btn btn-lg btn-secondary" routerLink="lobbieslist" routerLinkActive="active" ariaCurrentWhenActive="page">search lobby</button>
+    </div>
+    <div class="home-container-btn">
+      <h2>Create New Lobby</h2>
+      <p>Create your own game and invite your friends.</p>
+      <button class="btn btn-lg btn-secondary" (click)="createLobby()">create lobby</button>
+    </div>
   </div>
 </div>
 

@@ -1,9 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
 
 // global
-$theme-colors: (
+/*$theme-colors: (
   "primary": #ccddcc
-);
+);*/
 
 @import "bootstrap/scss/bootstrap";
 @import "bootstrap-icons/font/bootstrap-icons";
+
+body {
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  color: #fff;
+  text-shadow: 0 0.05rem 0.1rem rgb(0 0 0 / 50%);
+  box-shadow: inset 0 0 5rem rgb(0 0 0 / 50%);
+}
+
+html, body {
+  height: 100%;
+  background-color: #333;
+}
+
+.heading {
+  font-size: 3rem;
+  margin-bottom: 0.5rem;
+}
+
+.container {
+  text-align: center;
+  max-width: 42em;
+}
