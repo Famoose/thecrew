@@ -34,6 +34,7 @@ export class LobbyService {
                 'lobby:join',
                 groupId,
                 (lobby: Lobby | null) => {
+                    console.log('joined lobby: ' + lobby)
                     if (lobby) {
                         observer.next(lobby)
                     } else {

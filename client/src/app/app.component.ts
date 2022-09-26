@@ -9,15 +9,8 @@ import { ChatService } from './services/chat.service'
     styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-    message = ''
-    messages: string[] = []
-
-    constructor(
-        private mainService: MainService,
-    ) {
+    constructor(private mainService: MainService) {
         console.log('begin authenticate')
-        mainService.authenticate()
+        mainService.authenticate().subscribe()
     }
-
-
 }

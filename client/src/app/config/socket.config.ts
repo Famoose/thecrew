@@ -9,6 +9,7 @@ export class MainSocket extends Socket {
             url: '',
             options: {
                 path: '/api',
+                autoConnect: false,
             },
         })
         this.updateCredentials(this.authService.getSessionID())
@@ -17,12 +18,16 @@ export class MainSocket extends Socket {
         })
     }
 
-    updateCredentials(sessionID: string | null) {
-        this.ioSocket.disconnect()
+    updateCredentials(
+        sessionID: string | null,
+        forceReconnect: boolean = true
+    ) {
         this.ioSocket.auth = {
             token: (() => (sessionID ? sessionID : ''))(),
         }
-        this.ioSocket.connect()
+        if (forceReconnect) {
+            this.ioSocket.disconnect().connect()
+        }
     }
 }
 
@@ -33,6 +38,7 @@ export class LobbySocket extends Socket {
             url: '/lobby',
             options: {
                 path: '/api',
+                autoConnect: false,
             },
         })
         this.updateCredentials(this.authService.getSessionID())
@@ -41,12 +47,16 @@ export class LobbySocket extends Socket {
         })
     }
 
-    updateCredentials(sessionID: string | null) {
-        this.ioSocket.disconnect()
+    updateCredentials(
+        sessionID: string | null,
+        forceReconnect: boolean = true
+    ) {
         this.ioSocket.auth = {
             token: (() => (sessionID ? sessionID : ''))(),
         }
-        this.ioSocket.connect()
+        if (forceReconnect) {
+            this.ioSocket.disconnect().connect()
+        }
     }
 }
 
@@ -57,6 +67,7 @@ export class ChatSocket extends Socket {
             url: '/chat',
             options: {
                 path: '/api',
+                autoConnect: false,
             },
         })
         this.updateCredentials(this.authService.getSessionID())
@@ -65,11 +76,15 @@ export class ChatSocket extends Socket {
         })
     }
 
-    updateCredentials(sessionID: string | null) {
-        this.ioSocket.disconnect()
+    updateCredentials(
+        sessionID: string | null,
+        forceReconnect: boolean = true
+    ) {
         this.ioSocket.auth = {
             token: (() => (sessionID ? sessionID : ''))(),
         }
-        this.ioSocket.connect()
+        if (forceReconnect) {
+            this.ioSocket.disconnect().connect()
+        }
     }
 }

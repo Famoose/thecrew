@@ -7,25 +7,37 @@ export const createChatController = (
     sessionService: SessionService,
     chatService: ChatService
 ) => {
-    const joinChatGroup = async function () {
+    const joinChatGroup = async function (
+        groupId: string,
+        _callback: () => void
+    ) {
         try {
             const session = await sessionService.checkValidSession(
                 this.handshake.auth.token
             )
-            const groupID = await chatService.tryGetChatGroupID(session)
-            this.join(groupID)
+            if (await chatService.isSessionInChatGroup(groupId, session)) {
+                this.join(groupId)
+                console.log('joined chatGroup ' + groupId)
+                _callback()
+            }
         } catch (e) {
             console.error(e)
         }
     }
 
-    const sendMessage = async function (message: string) {
+    const sendMessage = async function (groupId: string, message: string) {
         try {
             const session = await sessionService.checkValidSession(
                 this.handshake.auth.token
             )
-            const groupID = await chatService.tryGetChatGroupID(session)
-            namespace.in(groupID).emit('onMessageSent', message)
+            if (await chatService.isSessionInChatGroup(groupId, session)) {
+                console.log(
+                    'send message to: ' + groupId + ' message: ' + message
+                )
+                namespace
+                    .to(groupId)
+                    .emit('onMessageSent', { groupId, message })
+            }
         } catch (e) {
             console.error(e)
         }

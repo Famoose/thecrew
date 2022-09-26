@@ -1,7 +1,22 @@
 <div class="container">
-  <div class="mb-5">
-    <h1 class="heading">Lobby</h1>
-  </div>
+    <div class="mb-5">
+        <h1 class="heading">Lobby</h1>
+    </div>
+    <div></div>
+    <div>Choose a mission</div>
+    <div class="btn-group-vertical">
+        <input type="radio" class="btn-check" name="mission" />
+        <label class="btn btn-outline-primary">Mission 1</label>
+        <input type="radio" class="btn-check" name="mission" />
+        <label class="btn btn-outline-primary">Mission 2</label>
+        <input type="radio" class="btn-check" name="mission" />
+        <label class="btn btn-outline-primary">Mission 3</label>
+    </div>
+    <div>
+        <button class="btn btn-sm btn-primary" (click)="startGame()">
+            start game
+        </button>
+    </div>
 </div>
-{{lobby | json}}
-<app-chat></app-chat>
+{{ lobby | json }}
+<app-chat *ngIf="groupId && lobby" [groupId]="groupId"></app-chat>

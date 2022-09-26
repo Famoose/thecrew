@@ -9,7 +9,7 @@ import { LobbyService } from '../../services/lobby.service'
     styleUrls: ['./lobby.component.scss'],
 })
 export class LobbyComponent implements OnInit {
-    groupId = ''
+    groupId: string | undefined
 
     constructor(
         private activatedRoute: ActivatedRoute,
@@ -22,15 +22,21 @@ export class LobbyComponent implements OnInit {
     ngOnInit(): void {
         this.activatedRoute.params.subscribe((params) => {
             this.groupId = params['groupId']
-            this.lobbyService.joinLobby(this.groupId).subscribe(
-                (lobby) => {
-                    this.lobby = lobby
-                },
-                () => {
-                    console.log('group not found')
-                    this.router.navigate(['/'])
-                }
-            )
+            if (this.groupId) {
+                this.lobbyService.joinLobby(this.groupId).subscribe(
+                    (lobby) => {
+                        this.lobby = lobby
+                    },
+                    () => {
+                        console.log('group not found')
+                        this.router.navigate(['/'])
+                    }
+                )
+            }
         })
+    }
+
+    startGame() {
+        //this.router.navigate('game', this.groupId);
     }
 }
