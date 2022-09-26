@@ -18,6 +18,7 @@ export const createMainModule = (io: ServerSpecifyType, services: Services) => {
                 _id: sessionID,
                 userID: socket.data.userID || '',
             })
+            console.log(`stored new session: ${sessionID}`)
         }
 
         socket.emit('session', {
@@ -26,7 +27,6 @@ export const createMainModule = (io: ServerSpecifyType, services: Services) => {
         })
 
         socket.on('session:get', (_callback) => {
-            console.log('server:session:get')
             _callback({
                 sessionID: socket.data.sessionID || '',
                 userID: socket.data.userID || '',
