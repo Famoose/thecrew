@@ -1,8 +1,7 @@
-$font-stack: Helvetica Neue, sans-serif;
-$primary-color: #133458;
+.home-container {
+  background-color: #ccddcc;
+}
 
-body {
-  background-color: cornsilk;
-  font: $font-stack;
-  color: $primary-color;
+div.home-container {
+  background-color: aliceblue;
 }
