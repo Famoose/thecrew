@@ -18,9 +18,11 @@ export class MainSocket extends Socket {
     }
 
     updateCredentials(sessionID: string | null) {
+        this.ioSocket.disconnect()
         this.ioSocket.auth = {
             token: (() => (sessionID ? sessionID : ''))(),
         }
+        this.ioSocket.connect()
     }
 }
 
@@ -40,9 +42,11 @@ export class LobbySocket extends Socket {
     }
 
     updateCredentials(sessionID: string | null) {
+        this.ioSocket.disconnect()
         this.ioSocket.auth = {
             token: (() => (sessionID ? sessionID : ''))(),
         }
+        this.ioSocket.connect()
     }
 }
 
@@ -62,8 +66,10 @@ export class ChatSocket extends Socket {
     }
 
     updateCredentials(sessionID: string | null) {
+        this.ioSocket.disconnect()
         this.ioSocket.auth = {
             token: (() => (sessionID ? sessionID : ''))(),
         }
+        this.ioSocket.connect()
     }
 }

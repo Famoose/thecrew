@@ -1,5 +1,6 @@
 import { Db } from 'mongodb'
-import {Group} from "./group.repository";
+import { Group } from './group.repository'
+import { Session } from './session.repository'
 
 export type LobbyRepository = {
     findLobby(id: string): Promise<Lobby | null>
@@ -9,12 +10,19 @@ export type LobbyRepository = {
     findLobbyByGroup(group: Group): Promise<Lobby | null>
 }
 
+export enum LobbyStatus {
+    InGame = 'IN_GAME',
+    Forming = 'FORMING',
+}
+
 export type Lobby = {
     _id: string
-    mission: string,
-    maxAllowedPlayer: number,
-    minRequiredPlayer: number,
+    owner: Session
+    mission: string
+    maxAllowedPlayer: number
+    minRequiredPlayer: number
     group: Group
+    status: LobbyStatus
 }
 
 export const createLobbyRepository = (database: Db): LobbyRepository => {

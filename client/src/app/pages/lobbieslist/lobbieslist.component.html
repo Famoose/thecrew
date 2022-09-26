@@ -1,30 +1,36 @@
 <div class="container d-flex h-100 p-3 mx-auto flex-column">
-  <div class="mb-5">
-    <h1 class="heading">Lobbies list</h1>
-  </div>
-  <div>
-    <table class="table table-list">
-      <thead>
-      <tr>
-        <th scope="col">Player</th>
-        <th scope="col">Mission</th>
-        <th scope="col">State</th>
-        <th scope="col"></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let lobby of lobbies">
-        <td>{{lobby.group.groupMembers.length}}</td>
-        <td>{{lobby.mission}}</td>
-        <td>{{lobby.state}}</td>
-        <td>
-          <button class="btn btn-lg btn-secondary" routerLink="/lobby/{{lobby.group._id}}" routerLinkActive="active"
-                  ariaCurrentWhenActive="page">join
-          </button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
+    <div class="mb-5">
+        <h1 class="heading">Lobbies list</h1>
+    </div>
+    <div>
+        <table class="table table-list">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Player</th>
+                    <th scope="col">Mission</th>
+                    <th scope="col">State</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let lobby of lobbies">
+                    <td>{{ lobby._id }}</td>
+                    <td>{{ lobby.group.groupMembers.length }}</td>
+                    <td>{{ lobby.mission }}</td>
+                    <td>{{ lobby.status }}</td>
+                    <td>
+                        <button
+                            class="btn btn-lg btn-secondary"
+                            routerLink="/lobby/{{ lobby.group._id }}"
+                            routerLinkActive="active"
+                            ariaCurrentWhenActive="page"
+                        >
+                            join
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
-
