@@ -1,13 +1,13 @@
-<div class="container d-flex h-100 p-3 mx-auto flex-column">
+<div class="container d-flex p-3 mx-auto flex-column">
     <div class="mb-5">
         <h1 class="heading">Lobbies list</h1>
     </div>
-    <div>
+    <div class="container">
         <table class="table table-list">
             <thead>
                 <tr>
                     <th scope="col">ID</th>
-                    <th scope="col">Player</th>
+                    <th scope="col">Players</th>
                     <th scope="col">Mission</th>
                     <th scope="col">State</th>
                     <th scope="col"></th>
@@ -15,11 +15,13 @@
             </thead>
             <tbody>
                 <tr *ngFor="let lobby of lobbies">
-                    <td>{{ lobby._id }}</td>
-                    <td>{{ lobby.group.groupMembers.length }}</td>
-                    <td>{{ lobby.mission }}</td>
-                    <td>{{ lobby.status }}</td>
-                    <td>
+                    <td data-label="ID">{{ lobby._id }}</td>
+                    <td data-label="Players">
+                        {{ lobby.group.groupMembers.length }}
+                    </td>
+                    <td data-label="Mission">{{ lobby.mission }}</td>
+                    <td data-label="State">{{ lobby.status }}</td>
+                    <td data-label=" ">
                         <button
                             class="btn btn-sm btn-primary"
                             routerLink="/lobby/{{ lobby.group._id }}"

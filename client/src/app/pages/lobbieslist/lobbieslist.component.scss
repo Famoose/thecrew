@@ -1,4 +1,53 @@
 .table-list {
-  color: #ffffff;
-  vertical-align: middle;
+    color: #ffffff;
+    vertical-align: middle;
+}
+
+@media screen and (min-width: 601px) {
+    tr:nth-of-type(even) {
+        background: #565e64;
+    }
+
+    th {
+        background: #565e64;
+    }
+}
+
+// layout for mobile devices
+@media only screen and (max-width: 600px) {
+    th {
+        display: none;
+    }
+
+    table {
+        border: 0;
+    }
+
+    table caption {
+        font-size: 1.3em;
+    }
+
+    table tr {
+        display: block;
+        margin-bottom: 0.625em;
+    }
+
+    table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 0.8em;
+        text-align: right;
+        background-color: #565e64;
+    }
+
+    table td::before {
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table td:last-child {
+        border-bottom: 0;
+    }
 }
