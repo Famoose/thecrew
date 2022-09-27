@@ -10,6 +10,7 @@
 
     th {
         background: #565e64;
+        text-transform: uppercase;
     }
 }
 
@@ -21,6 +22,7 @@
 
     table {
         border: 0;
+        border-collapse: collapse;
     }
 
     table caption {
@@ -38,6 +40,7 @@
         font-size: 0.8em;
         text-align: right;
         background-color: #565e64;
+        border-radius: 5px;
     }
 
     table td::before {
