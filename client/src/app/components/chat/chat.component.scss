@@ -1,0 +1,24 @@
+.chat-card {
+    position: fixed;
+    bottom: 5px;
+    left: 5px;
+    z-index: 50;
+    background-color: #6c757d;
+}
+
+.card-body {
+    max-height: 33vh;
+    height: 33vh;
+    overflow-y: scroll;
+}
+
+.chat-card.collapsed {
+    .card-body {
+        max-height: 33vh;
+        height: 0vh;
+    }
+}
+
+.card-header {
+    min-width: 12rem;
+}

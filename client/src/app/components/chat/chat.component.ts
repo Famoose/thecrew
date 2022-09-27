@@ -1,16 +1,26 @@
-import { Component, Input, OnInit } from '@angular/core'
+import {
+    AfterViewChecked,
+    Component,
+    ElementRef,
+    Input,
+    OnInit,
+    ViewChild,
+} from '@angular/core'
 import { MainService } from '../../services/main.service'
 import { ChatService } from '../../services/chat.service'
+import { checkBudgets } from '@angular-devkit/build-angular/src/utils/bundle-calculator'
 
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
     @Input() groupId: string | undefined
+    @ViewChild('chatBody') chatBody: ElementRef | undefined
     message = ''
     messages: string[] = []
+    collapsed: boolean = false
 
     constructor(
         private mainService: MainService,
@@ -30,10 +40,20 @@ export class ChatComponent implements OnInit {
         if (this.groupId && this.message) {
             console.log('send message: ' + this.message + ' to ' + this.groupId)
             this.chatService.sendMessage(this.groupId, this.message)
+            this.message = ''
         }
     }
 
     toggleChatWindow() {
-        //
+        this.collapsed = !this.collapsed
+    }
+
+    ngAfterViewChecked(): void {
+        if (this.chatBody) {
+            this.chatBody.nativeElement.scrollTo(
+                0,
+                this.chatBody.nativeElement.scrollHeight
+            )
+        }
     }
 }
