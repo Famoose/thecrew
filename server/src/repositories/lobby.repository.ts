@@ -8,6 +8,7 @@ export type LobbyRepository = {
     updateLobby(lobby: Lobby): Promise<boolean>
     findAllLobbies(): Promise<Lobby[]>
     findLobbyByGroup(group: Group): Promise<Lobby | null>
+    findLobbyByGroupId(groupId: string): Promise<Lobby | null>
 }
 
 export enum LobbyStatus {
@@ -55,6 +56,13 @@ export const createLobbyRepository = (database: Db): LobbyRepository => {
 
         return await collection.findOne(query)
     }
+    const findLobbyByGroupId = async (groupId: string) => {
+        const query = {
+            'group._id': { $eq: groupId },
+        }
+        console.log(query)
+        return await collection.findOne(query)
+    }
 
     return {
         findLobby,
@@ -62,5 +70,6 @@ export const createLobbyRepository = (database: Db): LobbyRepository => {
         updateLobby,
         findAllLobbies,
         findLobbyByGroup,
+        findLobbyByGroupId,
     }
 }

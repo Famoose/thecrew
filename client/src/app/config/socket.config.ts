@@ -88,3 +88,32 @@ export class ChatSocket extends Socket {
         }
     }
 }
+
+@Injectable()
+export class GameSocket extends Socket {
+    constructor(private authService: AuthService) {
+        super({
+            url: '/game',
+            options: {
+                path: '/api',
+                autoConnect: false,
+            },
+        })
+        this.updateCredentials(this.authService.getSessionID())
+        authService.onUpdateCredentials$.subscribe((sessionID) => {
+            this.updateCredentials(sessionID)
+        })
+    }
+
+    updateCredentials(
+        sessionID: string | null,
+        forceReconnect: boolean = true
+    ) {
+        this.ioSocket.auth = {
+            token: (() => (sessionID ? sessionID : ''))(),
+        }
+        if (forceReconnect) {
+            this.ioSocket.disconnect().connect()
+        }
+    }
+}

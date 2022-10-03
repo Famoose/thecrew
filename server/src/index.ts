@@ -7,6 +7,7 @@ import { Server } from 'socket.io'
 import { createMainModule } from './module/main/main.module'
 import { createChatModule } from './module/chat/chat.module'
 import { MongoClient } from 'mongodb'
+import { createGameModule } from './module/game/game.module'
 
 const httpServer = http.createServer()
 
@@ -31,6 +32,9 @@ const modules = [
     },
     (io: Server) => {
         createChatModule(io, services)
+    },
+    (io: Server) => {
+        createGameModule(io, services)
     },
 ]
 createServerSocket(httpServer, modules)

@@ -6,19 +6,23 @@ export const createLobbyModule = (
     io: ServerSpecifyType,
     services: Services
 ) => {
-    const { sessionService, groupService, lobbyService } = services
-
-    const { createLobby, joinLobby, listLobbies } = createLobbyController(
-        sessionService,
-        groupService,
-        lobbyService
-    )
+    const { sessionService, groupService, lobbyService, gameService } = services
 
     const namespace = io.of('lobby')
+
+    const { createLobby, joinLobby, listLobbies, startGame } =
+        createLobbyController(
+            namespace,
+            sessionService,
+            groupService,
+            lobbyService,
+            gameService
+        )
 
     namespace.on('connection', (socket) => {
         socket.on('lobby:create', createLobby)
         socket.on('lobby:join', joinLobby)
         socket.on('lobby:all', listLobbies)
+        socket.on('lobby:startGame', startGame)
     })
 }

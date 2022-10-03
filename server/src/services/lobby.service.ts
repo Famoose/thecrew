@@ -12,6 +12,7 @@ export type LobbyService = {
     createLobby(group: Group, owner: Session): Promise<Lobby>
     updateLobby(lobby: Lobby): Promise<boolean>
     findLobbyByGroup(group: Group): Promise<Lobby | null>
+    findLobbyByGroupId(groupId: string): Promise<Lobby | null>
     findAllLobbies(): Promise<Lobby[]>
     joinLobby(groupId: string, session: Session): Promise<Lobby>
 }
@@ -42,6 +43,10 @@ export const createLobbyService = (
         return await lobbyRepository.findLobbyByGroup(group)
     }
 
+    const findLobbyByGroupId = async (groupId: string) => {
+        return await lobbyRepository.findLobbyByGroupId(groupId)
+    }
+
     const findAllLobbies = async () => {
         return await lobbyRepository.findAllLobbies()
     }
@@ -70,6 +75,7 @@ export const createLobbyService = (
         createLobby,
         updateLobby,
         findLobbyByGroup,
+        findLobbyByGroupId,
         findAllLobbies,
         joinLobby,
     }

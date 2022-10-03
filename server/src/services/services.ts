@@ -3,12 +3,14 @@ import { Repositories } from '../repositories/repositories'
 import { createGroupService, GroupService } from './group.service'
 import { ChatService, createChatService } from './chat.service'
 import { createLobbyService, LobbyService } from './lobby.service'
+import { createGameService, GameService } from './game.service'
 
 export type Services = {
     sessionService: SessionService
     groupService: GroupService
     chatService: ChatService
     lobbyService: LobbyService
+    gameService: GameService
 }
 export const createServices = (repositories: Repositories): Services => {
     const sessionService = createSessionService(repositories.sessionRepository)
@@ -18,5 +20,16 @@ export const createServices = (repositories: Repositories): Services => {
         repositories.lobbyRepository,
         groupService
     )
-    return { sessionService, groupService, chatService, lobbyService }
+    const gameService = createGameService(
+        repositories.gameRepository,
+        lobbyService,
+        groupService
+    )
+    return {
+        sessionService,
+        groupService,
+        chatService,
+        lobbyService,
+        gameService,
+    }
 }

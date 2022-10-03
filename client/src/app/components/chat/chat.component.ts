@@ -3,24 +3,28 @@ import {
     Component,
     ElementRef,
     Input,
+    OnDestroy,
     OnInit,
     ViewChild,
 } from '@angular/core'
 import { MainService } from '../../services/main.service'
 import { ChatService } from '../../services/chat.service'
 import { checkBudgets } from '@angular-devkit/build-angular/src/utils/bundle-calculator'
+import { Subscription } from 'rxjs'
 
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
     styleUrls: ['./chat.component.scss'],
 })
-export class ChatComponent implements OnInit, AfterViewChecked {
+export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
     @Input() groupId: string | undefined
     @ViewChild('chatBody') chatBody: ElementRef | undefined
     message = ''
     messages: string[] = []
     collapsed: boolean = false
+
+    receiveMessageSubscription: Subscription | undefined
 
     constructor(
         private mainService: MainService,
@@ -30,9 +34,11 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     ngOnInit(): void {
         if (this.groupId) {
             this.chatService.joinChatGroup(this.groupId).subscribe()
-            this.chatService.receiveMessage().subscribe((newMessage) => {
-                this.messages.push(newMessage.message)
-            })
+            this.receiveMessageSubscription = this.chatService
+                .receiveMessage()
+                .subscribe((newMessage) => {
+                    this.messages.push(newMessage.message)
+                })
         }
     }
 
@@ -54,6 +60,12 @@ export class ChatComponent implements OnInit, AfterViewChecked {
                 0,
                 this.chatBody.nativeElement.scrollHeight
             )
+        }
+    }
+
+    ngOnDestroy() {
+        if (this.receiveMessageSubscription) {
+            this.receiveMessageSubscription.unsubscribe()
         }
     }
 }

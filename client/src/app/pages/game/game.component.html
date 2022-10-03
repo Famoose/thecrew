@@ -1,2 +1,5 @@
-<p>game works!</p>
-<app-chat></app-chat>
+{{ game | json }}
+<app-chat
+    *ngIf="game?.lobby?.group?._id"
+    [groupId]="game?.lobby?.group?._id"
+></app-chat>
