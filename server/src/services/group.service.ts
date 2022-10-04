@@ -1,6 +1,10 @@
 import crypto from 'crypto'
 
-import { Group, GroupRepository } from '../repositories/group.repository'
+import {
+    Group,
+    GroupRepository,
+    PlayerColor,
+} from '../repositories/group.repository'
 import { Session } from '../repositories/session.repository'
 
 export type GroupService = {
@@ -17,7 +21,19 @@ export const createGroupService = (
 ): GroupService => {
     const createGroup = async () => {
         const groupID = crypto.randomUUID()
-        const group = { _id: groupID, groupMembers: [] }
+        const group = {
+            _id: groupID,
+            groupMembers: [],
+            colors: {},
+            availableColors: [
+                PlayerColor.BLUE,
+                PlayerColor.RED,
+                PlayerColor.GREEN,
+                PlayerColor.YELLOW,
+                PlayerColor.PURPLE,
+                PlayerColor.ORANGE,
+            ],
+        }
         await groupRepository.createGroup(group)
         return group
     }
@@ -26,6 +42,13 @@ export const createGroupService = (
         const foundGroup = await groupRepository.findGroup(id)
         if (foundGroup) {
             foundGroup.groupMembers = [...foundGroup.groupMembers, session]
+            const color = foundGroup.availableColors.pop()
+            if (color) {
+                foundGroup.colors[session.userID] = color
+            } else {
+                //more than 5 players, should normally not happen
+                foundGroup.colors[session.userID] = PlayerColor.BLACK
+            }
             await groupRepository.updateGroup(foundGroup)
             return foundGroup
         }

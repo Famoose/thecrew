@@ -1,6 +1,7 @@
 import { Db } from 'mongodb'
 import { Group } from './group.repository'
 import { Session } from './session.repository'
+import { Mission } from '../data/missions'
 
 export type LobbyRepository = {
     findLobby(id: string): Promise<Lobby | null>
@@ -19,7 +20,7 @@ export enum LobbyStatus {
 export type Lobby = {
     _id: string
     owner: Session
-    mission: string
+    mission?: Mission
     maxAllowedPlayer: number
     minRequiredPlayer: number
     group: Group
@@ -43,6 +44,8 @@ export const createLobbyRepository = (database: Db): LobbyRepository => {
             $set: {
                 mission: lobby.mission,
                 group: lobby.group,
+                status: lobby.status,
+                owner: lobby.owner,
             },
         }
         const updateResult = await collection.updateOne(query, update)
@@ -60,7 +63,6 @@ export const createLobbyRepository = (database: Db): LobbyRepository => {
         const query = {
             'group._id': { $eq: groupId },
         }
-        console.log(query)
         return await collection.findOne(query)
     }
 

@@ -1,9 +1,15 @@
-import { Game, GameRepository } from '../repositories/game.repository'
+import {
+    Game,
+    GameRepository,
+    QuestPlayer,
+} from '../repositories/game.repository'
 import { LobbyService } from './lobby.service'
-import { LobbyStatus } from '../repositories/lobby.repository'
+import { Lobby, LobbyStatus } from '../repositories/lobby.repository'
 import { Session } from '../repositories/session.repository'
 import { GroupService } from './group.service'
 import crypto from 'crypto'
+import { missions } from '../data/missions'
+import { Quest } from '../data/quests'
 
 export type GameService = {
     startGame(groupId: string, session: Session): Promise<Game>
@@ -15,6 +21,25 @@ export const createGameService = (
     lobbyService: LobbyService,
     groupService: GroupService
 ): GameService => {
+    const distributeQuestToPlayers = (lobby: Lobby) => {
+        if (lobby.mission) {
+            const questPlayers: QuestPlayer[] = []
+            const playerCount = lobby.group.groupMembers.length
+            lobby.mission.quests.forEach((quest: Quest, index) => {
+                const player = lobby.group.groupMembers[index % playerCount]
+                if (player) {
+                    questPlayers.push({
+                        player,
+                        quest,
+                    })
+                } else {
+                    throw new Error('player not found')
+                }
+            })
+            return questPlayers
+        }
+        throw new Error('mission was null')
+    }
     const startGame = async (groupId: string, session: Session) => {
         const lobby = await lobbyService.findLobbyByGroupId(groupId)
         if (lobby) {
@@ -25,17 +50,26 @@ export const createGameService = (
                     lobby.group.groupMembers.length <= lobby.maxAllowedPlayer &&
                     lobby.status === LobbyStatus.Forming
                 ) {
-                    lobby.status = LobbyStatus.InGame
-                    const newGame = {
-                        _id: crypto.randomUUID(),
-                        lobby,
+                    if (
+                        lobby.mission &&
+                        missions.indexOf(lobby.mission) !== -1
+                    ) {
+                        lobby.status = LobbyStatus.InGame
+
+                        const newGame = {
+                            _id: crypto.randomUUID(),
+                            lobby,
+                            questPlayers: distributeQuestToPlayers(lobby),
+                        }
+
+                        const scc = await gameRepository.createGame(newGame)
+                        if (scc) {
+                            await lobbyService.updateLobby(lobby)
+                            return newGame
+                        }
+                        throw new Error('could not save new game to database')
                     }
-                    const scc = await gameRepository.createGame(newGame)
-                    if (scc) {
-                        await lobbyService.updateLobby(lobby)
-                        return newGame
-                    }
-                    throw new Error('could not save new game to database')
+                    throw new Error('mission was not found')
                 }
                 throw new Error('lobby not in right condition to start a game')
             }

@@ -28,7 +28,6 @@ export const createLobbyService = (
             owner,
             maxAllowedPlayer: 5,
             minRequiredPlayer: 3,
-            mission: '',
             status: LobbyStatus.Forming,
         }
         await lobbyRepository.createLobby(lobby)
@@ -52,23 +51,19 @@ export const createLobbyService = (
     }
 
     const joinLobby = async (groupId: string, session: Session) => {
-        const group = await groupService.findGroupById(groupId)
-        if (group) {
-            const lobby = await findLobbyByGroup(group)
-            if (lobby) {
-                if (groupService.isSessionInGroup(group, session)) {
-                    return lobby
-                }
-                if (lobby.maxAllowedPlayer > lobby.group.groupMembers.length) {
-                    lobby.group = await groupService.joinGroup(groupId, session)
-                    await updateLobby(lobby)
-                    return lobby
-                }
-                throw new Error('lobby is full')
+        const lobby = await findLobbyByGroupId(groupId)
+        if (lobby) {
+            if (groupService.isSessionInGroup(lobby.group, session)) {
+                return lobby
             }
-            throw new Error('lobby not found')
+            if (lobby.maxAllowedPlayer > lobby.group.groupMembers.length) {
+                lobby.group = await groupService.joinGroup(groupId, session)
+                await updateLobby(lobby)
+                return lobby
+            }
+            throw new Error('lobby is full')
         }
-        throw new Error('group not found')
+        throw new Error('lobby not found')
     }
 
     return {

@@ -9,9 +9,21 @@ export type GroupRepository = {
     findGroupBySession(session: Session): Promise<Group | null>
 }
 
+export enum PlayerColor {
+    YELLOW = 'YELLOW',
+    GREEN = 'GREEN',
+    BLUE = 'BLUE',
+    RED = 'RED',
+    BLACK = 'BLACK',
+    PURPLE = 'PURPLE',
+    ORANGE = 'ORANGE',
+}
+
 export type Group = {
     _id: string
     groupMembers: Session[]
+    colors: { [key: string]: PlayerColor }
+    availableColors: PlayerColor[]
 }
 
 export const createGroupRepository = (database: Db): GroupRepository => {
@@ -30,6 +42,8 @@ export const createGroupRepository = (database: Db): GroupRepository => {
         const update = {
             $set: {
                 groupMembers: group.groupMembers,
+                colors: group.colors,
+                availableColors: group.availableColors,
             },
         }
         const updateResult = await collection.updateOne(query, update)

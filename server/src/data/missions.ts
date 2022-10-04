@@ -1,4 +1,17 @@
-export const missions = [
+import { Quest, quests } from './quests'
+
+export type TranslatedString = {
+    de: string
+    fr: string
+    en: string
+}
+
+export type Mission = {
+    name: TranslatedString
+    level: number
+    quests: (Quest | undefined)[]
+}
+export const missions: Mission[] = [
     {
         name: {
             de: 'Kampf im Röstigraben.',
@@ -6,6 +19,7 @@ export const missions = [
             en: 'Battle in the Rösti-Trench',
         },
         level: 1,
+        quests: [quests[0], quests[1]],
     },
     {
         name: {
@@ -14,6 +28,7 @@ export const missions = [
             en: 'Referendum',
         },
         level: 2,
+        quests: [quests[2], quests[3], quests[4]],
     },
     {
         name: {
@@ -22,5 +37,6 @@ export const missions = [
             en: 'The 3 confederates',
         },
         level: 3,
+        quests: [quests[5], quests[6], quests[7], quests[8], quests[9]],
     },
 ]

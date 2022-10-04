@@ -1,4 +1,13 @@
-export const quests = [
+import { TranslatedString } from './missions'
+import { Game } from '../repositories/game.repository'
+
+export type Quest = {
+    name: TranslatedString
+    points: { [key: number]: number }
+    questFulfilled?: (game: Game) => boolean
+}
+
+export const quests: Quest[] = [
     {
         name: {
             de: 'Ich gewinne 1,2 und 3 blau.',

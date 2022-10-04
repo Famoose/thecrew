@@ -10,7 +10,13 @@ export enum CardType {
     TRUMP = 'TRUMP',
 }
 
-export const cards = [
+export type Card = {
+    value: number
+    color: Color | ''
+    type: CardType
+}
+
+export const cards: Card[] = [
     {
         value: 1,
         color: Color.YELLOW,

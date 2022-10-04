@@ -1,5 +1,7 @@
 import { Db } from 'mongodb'
 import { Lobby } from './lobby.repository'
+import { Session } from './session.repository'
+import { Quest } from '../data/quests'
 
 export type GameRepository = {
     findGame(id: string): Promise<Game | null>
@@ -7,11 +9,15 @@ export type GameRepository = {
     updateGame(game: Game): Promise<boolean>
     findGameByGroupId(groupId: string): Promise<Game | null>
 }
-
+export type QuestPlayer = {
+    player: Session
+    quest: Quest
+}
 //Todo erweiter mit auftragskarten - session id, stich history und activer spieler
 export type Game = {
     _id: string
     lobby: Lobby
+    questPlayers: QuestPlayer[]
 }
 
 export const createGameRepository = (database: Db): GameRepository => {
@@ -30,6 +36,7 @@ export const createGameRepository = (database: Db): GameRepository => {
         const update = {
             $set: {
                 lobby: game.lobby,
+                questPlayers: game.questPlayers,
             },
         }
         const updateResult = await collection.updateOne(query, update)
