@@ -3,6 +3,7 @@ import { LobbySocket } from '../config/socket.config'
 import { Observable, throttleTime } from 'rxjs'
 import { Lobby } from 'src/types'
 import { Game } from '../../types'
+import { Mission } from 'src/staticData'
 
 @Injectable({
     providedIn: 'root',
@@ -78,5 +79,12 @@ export class LobbyService {
         return this.lobbySocket
             .fromEvent('lobby:list:changed')
             .pipe(throttleTime(1000))
+    }
+
+    setMission(groupId: string, mission: Mission) {
+        return new Observable<Mission>((observer) => {
+            this.lobbySocket.emit('lobby:setMission', groupId, mission)
+            observer.next()
+        })
     }
 }

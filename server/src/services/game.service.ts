@@ -8,7 +8,6 @@ import { Lobby, LobbyStatus } from '../repositories/lobby.repository'
 import { Session } from '../repositories/session.repository'
 import { GroupService } from './group.service'
 import crypto from 'crypto'
-import { missions } from '../data/missions'
 import { Quest } from '../data/quests'
 
 export type GameService = {
@@ -43,17 +42,17 @@ export const createGameService = (
     const startGame = async (groupId: string, session: Session) => {
         const lobby = await lobbyService.findLobbyByGroupId(groupId)
         if (lobby) {
-            if (groupService.isSessionInGroup(lobby.group, session)) {
+            if (
+                groupService.isSessionInGroup(lobby.group, session) &&
+                lobby.owner._id === session._id
+            ) {
                 if (
                     lobby.group.groupMembers.length >=
                         lobby.minRequiredPlayer &&
                     lobby.group.groupMembers.length <= lobby.maxAllowedPlayer &&
                     lobby.status === LobbyStatus.Forming
                 ) {
-                    if (
-                        lobby.mission &&
-                        missions.indexOf(lobby.mission) !== -1
-                    ) {
+                    if (lobby.mission) {
                         lobby.status = LobbyStatus.InGame
 
                         const newGame = {
@@ -73,7 +72,7 @@ export const createGameService = (
                 }
                 throw new Error('lobby not in right condition to start a game')
             }
-            throw new Error('player how started is not in the lobby')
+            throw new Error('player who started is not in the lobby')
         }
         throw new Error('lobby not found')
     }

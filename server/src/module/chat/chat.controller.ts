@@ -30,13 +30,22 @@ export const createChatController = (
             const session = await sessionService.checkValidSession(
                 this.handshake.auth.token
             )
-            if (await chatService.isSessionInChatGroup(groupId, session)) {
+            const group = await chatService.isSessionInChatGroup(
+                groupId,
+                session
+            )
+            if (group) {
                 console.log(
                     'send message to: ' + groupId + ' message: ' + message
                 )
                 namespace
                     .to(groupId)
-                    .emit('onMessageSent', { groupId, message })
+                    .emit('onMessageSent', {
+                        groupId,
+                        message,
+                        session,
+                        color: group.colors[session.userID],
+                    })
             }
         } catch (e) {
             console.error(e)

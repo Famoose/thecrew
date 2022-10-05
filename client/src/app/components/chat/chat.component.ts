@@ -9,8 +9,8 @@ import {
 } from '@angular/core'
 import { MainService } from '../../services/main.service'
 import { ChatService } from '../../services/chat.service'
-import { checkBudgets } from '@angular-devkit/build-angular/src/utils/bundle-calculator'
 import { Subscription } from 'rxjs'
+import { Message } from 'src/types'
 
 @Component({
     selector: 'app-chat',
@@ -21,7 +21,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
     @Input() groupId: string | undefined
     @ViewChild('chatBody') chatBody: ElementRef | undefined
     message = ''
-    messages: string[] = []
+    messages: Message[] = []
     collapsed: boolean = false
 
     receiveMessageSubscription: Subscription | undefined
@@ -37,7 +37,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
             this.receiveMessageSubscription = this.chatService
                 .receiveMessage()
                 .subscribe((newMessage) => {
-                    this.messages.push(newMessage.message)
+                    this.messages.push(newMessage)
                 })
         }
     }

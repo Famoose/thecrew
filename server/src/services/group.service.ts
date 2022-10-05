@@ -58,12 +58,13 @@ export const createGroupService = (
     const leaveGroup = async (id: string, session: Session) => {
         const foundGroup = await groupRepository.findGroup(id)
         if (foundGroup) {
-            const index = foundGroup.groupMembers.indexOf(session)
+            const index = findSessionInGroup(foundGroup, session)
             if (index !== -1) {
                 foundGroup.groupMembers.splice(index, 1)
                 await groupRepository.updateGroup(foundGroup)
             }
         }
+        throw new Error('Group not Found')
     }
 
     const findGroupBySession = async (session: Session) => {
@@ -78,6 +79,12 @@ export const createGroupService = (
         return (
             group.groupMembers.find((member) => member._id === session._id) !==
             undefined
+        )
+    }
+
+    const findSessionInGroup = (group: Group, session: Session) => {
+        return group.groupMembers.findIndex(
+            (member) => member._id === session._id
         )
     }
 

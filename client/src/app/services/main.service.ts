@@ -3,6 +3,7 @@ import { MainSocket } from '../config/socket.config'
 import { AuthService } from './auth.service'
 import { Router } from '@angular/router'
 import { Observable } from 'rxjs'
+import { Session } from 'src/types'
 
 @Injectable({
     providedIn: 'root',
@@ -22,14 +23,12 @@ export class MainService {
     }
 
     authenticate() {
-        return new Observable<string>((observer) => {
-            this.mainSocket.emit(
-                'session:get',
-                ({ sessionID }: { sessionID: string }) => {
-                    this.authService.setSessionID(sessionID)
-                    observer.next(sessionID)
-                }
-            )
+        return new Observable<Session>((observer) => {
+            this.mainSocket.emit('session:get', (session: Session) => {
+                this.authService.setSessionID(session._id)
+                this.authService.setUserID(session.userID)
+                observer.next(session)
+            })
         })
     }
 }

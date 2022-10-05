@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router'
 import { Lobby } from '../../../types'
 import { LobbyService } from '../../services/lobby.service'
 import { Subscription } from 'rxjs'
+import { Mission, missions } from 'src/staticData'
+import { AuthService } from '../../services/auth.service'
 
 @Component({
     selector: 'app-lobby',
@@ -11,18 +13,21 @@ import { Subscription } from 'rxjs'
 })
 export class LobbyComponent implements OnInit, OnDestroy {
     groupId: string | undefined
-
-    constructor(
-        private activatedRoute: ActivatedRoute,
-        private lobbyService: LobbyService,
-        private router: Router
-    ) {}
-
+    missions: Mission[] = missions
+    userID: string | null | undefined
     lobby: Lobby | null = null
     onLobbyChangedSubscription: Subscription | undefined
     onGameStartedSubscription: Subscription | undefined
 
+    constructor(
+        private activatedRoute: ActivatedRoute,
+        private lobbyService: LobbyService,
+        private router: Router,
+        private authService: AuthService
+    ) {}
+
     ngOnInit(): void {
+        this.userID = this.authService.getUserID()
         this.activatedRoute.params.subscribe((params) => {
             this.groupId = params['groupId']
             if (this.groupId) {
@@ -61,6 +66,12 @@ export class LobbyComponent implements OnInit, OnDestroy {
         }
         if (this.onGameStartedSubscription) {
             this.onGameStartedSubscription.unsubscribe()
+        }
+    }
+
+    selectMission(mission: Mission) {
+        if (this.groupId) {
+            this.lobbyService.setMission(this.groupId, mission).subscribe()
         }
     }
 }

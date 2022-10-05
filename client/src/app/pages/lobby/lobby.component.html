@@ -1,22 +1,38 @@
-<div class="container">
+<div class="container" *ngIf="lobby">
     <div class="mb-5">
-        <h1 class="heading">Lobby</h1>
+        <h1 class="heading">Lobby - {{ lobby._id }}</h1>
     </div>
-    <div></div>
-    <div>Choose a mission</div>
-    <div class="btn-group-vertical">
-        <input type="radio" class="btn-check" name="mission" />
-        <label class="btn btn-outline-primary">Mission 1</label>
-        <input type="radio" class="btn-check" name="mission" />
-        <label class="btn btn-outline-primary">Mission 2</label>
-        <input type="radio" class="btn-check" name="mission" />
-        <label class="btn btn-outline-primary">Mission 3</label>
-    </div>
+    <p>Player minimum required: {{ lobby.minRequiredPlayer }}</p>
+    <p>Player maximum: {{ lobby.maxAllowedPlayer }}</p>
     <div>
-        <button class="btn btn-sm btn-primary" (click)="startGame()">
-            start game
-        </button>
+        Players:
+        <p
+            *ngFor="let player of lobby.group.groupMembers"
+            [ngStyle]="{ color: lobby.group.colors[player.userID] }"
+        >
+            {{ player.userID }}
+        </p>
     </div>
+
+    <!-- owner view -->
+    <ng-container *ngIf="lobby.owner.userID === userID">
+        <div>Choose a mission</div>
+        <div class="btn-group-vertical">
+            <button
+                class="btn btn-outline-primary"
+                [ngClass]="{ active: mission._id === lobby.mission?._id }"
+                *ngFor="let mission of missions"
+                (click)="selectMission(mission)"
+            >
+                {{ mission.name.de }}
+            </button>
+        </div>
+        <div>
+            <button class="btn btn-sm btn-primary" (click)="startGame()">
+                start game
+            </button>
+        </div>
+    </ng-container>
 </div>
 {{ lobby | json }}
 <app-chat *ngIf="groupId && lobby" [groupId]="groupId"></app-chat>

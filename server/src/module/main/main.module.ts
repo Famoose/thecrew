@@ -22,13 +22,13 @@ export const createMainModule = (io: ServerSpecifyType, services: Services) => {
         }
 
         socket.emit('session', {
-            sessionID: socket.data.sessionID || '',
+            _id: socket.data.sessionID || '',
             userID: socket.data.userID || '',
         })
 
         socket.on('session:get', (_callback) => {
             _callback({
-                sessionID: socket.data.sessionID || '',
+                _id: socket.data.sessionID || '',
                 userID: socket.data.userID || '',
             })
         })

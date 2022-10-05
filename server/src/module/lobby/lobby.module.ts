@@ -10,7 +10,7 @@ export const createLobbyModule = (
 
     const namespace = io.of('lobby')
 
-    const { createLobby, joinLobby, listLobbies, startGame } =
+    const { createLobby, joinLobby, listLobbies, startGame, setMission } =
         createLobbyController(
             namespace,
             sessionService,
@@ -24,5 +24,6 @@ export const createLobbyModule = (
         socket.on('lobby:join', joinLobby)
         socket.on('lobby:all', listLobbies)
         socket.on('lobby:startGame', startGame)
+        socket.on('lobby:setMission', setMission)
     })
 }

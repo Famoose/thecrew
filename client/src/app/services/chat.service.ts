@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core'
 import { ChatSocket } from '../config/socket.config'
 import { Observable } from 'rxjs'
+import { Message } from 'src/types'
 
 @Injectable({
     providedIn: 'root',
@@ -27,9 +28,7 @@ export class ChatService {
         this.chatSocket.emit('sendMessage', groupId, message)
     }
 
-    receiveMessage(): Observable<{ groupId: string; message: string }> {
-        return this.chatSocket.fromEvent<{ groupId: string; message: string }>(
-            'onMessageSent'
-        )
+    receiveMessage() {
+        return this.chatSocket.fromEvent<Message>('onMessageSent')
     }
 }

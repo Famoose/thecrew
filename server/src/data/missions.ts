@@ -7,12 +7,15 @@ export type TranslatedString = {
 }
 
 export type Mission = {
+    _id: string
     name: TranslatedString
     level: number
     quests: (Quest | undefined)[]
 }
+
 export const missions: Mission[] = [
     {
+        _id: 'roestigrabe',
         name: {
             de: 'Kampf im Röstigraben.',
             fr: 'Combat dans le Röstigraben.',
@@ -22,6 +25,7 @@ export const missions: Mission[] = [
         quests: [quests[0], quests[1]],
     },
     {
+        _id: 'referendum',
         name: {
             de: 'Referendum',
             fr: 'Référendum',
@@ -31,6 +35,7 @@ export const missions: Mission[] = [
         quests: [quests[2], quests[3], quests[4]],
     },
     {
+        _id: 'eidgenossen',
         name: {
             de: 'Die 3 Eidgenossen',
             fr: 'Les 3 confédérés',

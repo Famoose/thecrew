@@ -4,6 +4,7 @@ import { LobbyService } from '../../services/lobby.service'
 import { Lobby } from '../../repositories/lobby.repository'
 import { Namespace } from 'socket.io'
 import { GameService } from '../../services/game.service'
+import { Mission } from '../../data/missions'
 
 export const createLobbyController = (
     namespace: Namespace,
@@ -78,5 +79,23 @@ export const createLobbyController = (
         }
     }
 
-    return { createLobby, joinLobby, listLobbies, startGame }
+    const setMission = async function (groupId: string, mission: Mission) {
+        try {
+            const session = await sessionService.checkValidSession(
+                this.handshake.auth.token
+            )
+            const lobby = await lobbyService.setMission(
+                groupId,
+                mission,
+                session
+            )
+
+            namespace.to(lobby.group._id).emit('lobby:changed', lobby)
+            namespace.emit('lobby:list:changed')
+        } catch (e) {
+            console.error(e)
+        }
+    }
+
+    return { createLobby, joinLobby, listLobbies, startGame, setMission }
 }

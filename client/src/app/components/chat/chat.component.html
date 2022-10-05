@@ -22,7 +22,13 @@
         </div>
     </div>
     <div #chatBody class="card-body collapse show multi-collapse">
-        <p class="m-0 p-0" *ngFor="let m of messages">{{ m }}</p>
+        <p
+            class="m-0 p-0"
+            *ngFor="let m of messages"
+            [ngStyle]="{ color: m.color }"
+        >
+            {{ m.message }}
+        </p>
     </div>
     <div class="card-footer collapse show multi-collapse">
         <div class="row text-center">
