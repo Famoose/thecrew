@@ -17,8 +17,8 @@ export const missions: Mission[] = [
     {
         _id: 'roestigrabe',
         name: {
-            de: 'Kampf im Röstigraben.',
-            fr: 'Combat dans le Röstigraben.',
+            de: 'Kampf im Röstigraben',
+            fr: 'Combat dans le Röstigraben',
             en: 'Battle in the Rösti-Trench',
         },
         level: 1,

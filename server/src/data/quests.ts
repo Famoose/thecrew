@@ -30,24 +30,6 @@ export const quests: Quest[] = [
     {
         _id: '2',
         name: {
-            de: 'Ich gewinne mit einer 3 einen Stich.',
-            fr: 'Je gagne un pli avec un 3.',
-            en: 'I win a trick with a 3.',
-        },
-        points: {
-            3: 3,
-            4: 4,
-            5: 5,
-        },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
-    },
-    {
-        _id: '3',
-        name: {
             de: 'Ich gewinne die gelbe 9 und blaue 7.',
             fr: 'Je gagne le 9 jaune et le 7 bleu.',
             en: 'I win the yellow 9 and the blue 7.',
@@ -64,7 +46,7 @@ export const quests: Quest[] = [
         // }
     },
     {
-        _id: '4',
+        _id: '3',
         name: {
             de: 'Ich gewinne genau einen Stich.',
             fr: 'Je gagne exactement un pli.',
@@ -82,7 +64,7 @@ export const quests: Quest[] = [
         // }
     },
     {
-        _id: '5',
+        _id: '4',
         name: {
             de: 'Ich gewinne keine gelben Karten.',
             fr: 'Je ne gagne aucune carte jaune.',
@@ -100,7 +82,7 @@ export const quests: Quest[] = [
         // }
     },
     {
-        _id: '6',
+        _id: '5',
         name: {
             de: 'Ich gewinne keine 5.',
             fr: 'Je ne gagne aucun 5.',
@@ -118,7 +100,7 @@ export const quests: Quest[] = [
         // }
     },
     {
-        _id: '7',
+        _id: '6',
         name: {
             de: 'Ich gewinne mindestens 5 rote Karten.',
             fr: 'Je gagne au moins 5 cartes rouges.',
@@ -136,11 +118,11 @@ export const quests: Quest[] = [
         // }
     },
     {
-        _id: '8',
+        _id: '7',
         name: {
-            de: 'Ich gewinne mehr rote als grüne Karten.',
-            fr: 'Je gagne plus de cartes rouges que vertes.',
-            en: 'I win more red than green cards.',
+            de: 'Ich gewinne mehr rote als grüne Karten (0 grüne Karten erlaubt).',
+            fr: 'Je gagne plus de cartes rouges que vertes (0 cartes vertes permis).',
+            en: 'I win more red than green cards (0 green cards allowed).',
         },
         points: {
             3: 1,
@@ -154,7 +136,7 @@ export const quests: Quest[] = [
         // }
     },
     {
-        _id: '9',
+        _id: '8',
         name: {
             de: 'Ich gewinne einen Stich, der nur ungerade Kartenwerte enthält.',
             fr: 'Je gagne un pli qui contient que des valeurs de cartes impaires.',
@@ -172,7 +154,7 @@ export const quests: Quest[] = [
         // }
     },
     {
-        _id: '10',
+        _id: '9',
         name: {
             de: 'Ich gewinne keine 9.',
             fr: 'Je ne gagne aucun 9.',

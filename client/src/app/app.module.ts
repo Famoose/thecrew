@@ -16,6 +16,8 @@ import { LobbiesListComponent } from './pages/lobbieslist/lobbies-list.component
 import { LobbyComponent } from './pages/lobby/lobby.component'
 import { ChatComponent } from './components/chat/chat.component'
 import { GameComponent } from './pages/game/game.component'
+import { CardComponent } from './components/card/card.component'
+import { CardsComponent } from './components/cards/cards.component'
 
 @NgModule({
     declarations: [
@@ -25,6 +27,8 @@ import { GameComponent } from './pages/game/game.component'
         LobbyComponent,
         ChatComponent,
         GameComponent,
+        CardComponent,
+        CardsComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, SocketIoModule, FormsModule],
     providers: [MainSocket, LobbySocket, ChatSocket, GameSocket],
