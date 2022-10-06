@@ -1,4 +1,47 @@
-{{ game | json }}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col">
+            <div class="row">
+                <div
+                    class="col d-flex justify-content-end"
+                    [ngStyle]="{ visibility: 3 < 5 ? 'hidden' : 'visible' }"
+                >
+                    <app-player></app-player>
+                </div>
+                <div
+                    class="col-1 d-flex justify-content-center"
+                    [ngStyle]="{ visibility: 3 < 5 ? 'visible' : 'hidden' }"
+                >
+                    <app-player></app-player>
+                </div>
+                <div
+                    class="col"
+                    [ngStyle]="{ visibility: 3 < 5 ? 'hidden' : 'visible' }"
+                >
+                    <app-player></app-player>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-1" [ngStyle]="{ visibility: 'hidden' }">
+                    <app-player></app-player>
+                </div>
+                <div class="col d-flex justify-content-center">
+                    {{ game | json }}
+                </div>
+                <div class="col-1 d-flex justify-content-end">
+                    <app-player></app-player>
+                </div>
+            </div>
+            <div class="row">
+                <app-cards
+                    class="game-handcards d-flex justify-content-end"
+                ></app-cards>
+            </div>
+        </div>
+    </div>
+</div>
+
 <app-chat
     *ngIf="game?.lobby?.group?._id"
     [groupId]="game?.lobby?.group?._id"
