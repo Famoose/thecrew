@@ -7,9 +7,10 @@ import { Component, OnInit } from '@angular/core'
 })
 export class CardsComponent implements OnInit {
     cards: any
+
     constructor() {}
 
     ngOnInit(): void {
-        console.log('Hello World')
+        console.log('Hello cards')
     }
 }

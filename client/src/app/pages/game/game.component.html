@@ -1,29 +1,54 @@
-<div class="container-fluid">
+<div class="container-fluid" *ngIf="game">
     <div class="row">
-        <div class="col-3"></div>
+        <div class="col-3">
+            <app-quests></app-quests>
+        </div>
         <div class="col">
             <div class="row">
                 <div
                     class="col d-flex justify-content-end"
-                    [ngStyle]="{ visibility: 3 < 5 ? 'hidden' : 'visible' }"
+                    [ngStyle]="{
+                        visibility:
+                            game.lobby.group.groupMembers.length < 5
+                                ? 'hidden'
+                                : 'visible'
+                    }"
                 >
                     <app-player></app-player>
                 </div>
                 <div
                     class="col-1 d-flex justify-content-center"
-                    [ngStyle]="{ visibility: 3 < 5 ? 'visible' : 'hidden' }"
+                    [ngStyle]="{
+                        visibility:
+                            game.lobby.group.groupMembers.length < 5
+                                ? 'visible'
+                                : 'hidden'
+                    }"
                 >
                     <app-player></app-player>
                 </div>
                 <div
                     class="col"
-                    [ngStyle]="{ visibility: 3 < 5 ? 'hidden' : 'visible' }"
+                    [ngStyle]="{
+                        visibility:
+                            game.lobby.group.groupMembers.length < 5
+                                ? 'hidden'
+                                : 'visible'
+                    }"
                 >
                     <app-player></app-player>
                 </div>
             </div>
             <div class="row">
-                <div class="col-1" [ngStyle]="{ visibility: 'hidden' }">
+                <div
+                    class="col-1"
+                    [ngStyle]="{
+                        visibility:
+                            game.lobby.group.groupMembers.length < 4
+                                ? 'hidden'
+                                : 'visible'
+                    }"
+                >
                     <app-player></app-player>
                 </div>
                 <div class="col d-flex justify-content-center">
@@ -34,9 +59,9 @@
                 </div>
             </div>
             <div class="row">
-                <app-cards
-                    class="game-handcards d-flex justify-content-end"
-                ></app-cards>
+                <app-cards class="game-handcards d-flex justify-content-end">{{
+                    cards
+                }}</app-cards>
             </div>
         </div>
     </div>

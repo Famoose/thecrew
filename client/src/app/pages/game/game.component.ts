@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core'
 import { Game } from '../../../types'
 import { GameService } from '../../services/game.service'
 import { ActivatedRoute, Router } from '@angular/router'
+import { Card, cards } from 'src/staticData'
 
 @Component({
     selector: 'app-game',
@@ -11,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router'
 export class GameComponent implements OnInit {
     game: Game | undefined
     gameId: string | undefined
+    cards: Card[] = cards
 
     constructor(
         private gameService: GameService,
