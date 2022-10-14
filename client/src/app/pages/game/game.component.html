@@ -1,6 +1,6 @@
 <div class="container-fluid" *ngIf="game">
     <div class="row">
-        <div class="col-3">
+        <div class="col-3" style="width: 20%">
             <app-quests></app-quests>
         </div>
         <div class="col">
@@ -52,16 +52,14 @@
                     <app-player></app-player>
                 </div>
                 <div class="col d-flex justify-content-center">
-                    {{ game | json }}
+                    <app-cards></app-cards>
                 </div>
                 <div class="col-1 d-flex justify-content-end">
                     <app-player></app-player>
                 </div>
             </div>
             <div class="row">
-                <app-cards class="game-handcards d-flex justify-content-end">{{
-                    cards
-                }}</app-cards>
+                <app-cards [cards]="cards"></app-cards>
             </div>
         </div>
     </div>
@@ -71,3 +69,5 @@
     *ngIf="game?.lobby?.group?._id"
     [groupId]="game?.lobby?.group?._id"
 ></app-chat>
+
+<!-- {{ game | json }} -->

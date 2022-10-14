@@ -1,12 +1,26 @@
-:host {
-    display: block;
-    margin-bottom: 10px;
-}
 .card {
-    height: 150px;
-    width: 100%;
-    line-height: 150px;
+    height: 120px;
+    width: 90px;
+    line-height: 120px;
     padding: 0;
+}
+
+.card-text {
+    color: black;
+    font-size: 60px;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.ripple {
+    background-position: center;
+    transition: background 0.8s;
+}
+
+.ripple:active {
+    background-color: #6c757d;
+    background-size: 100%;
+    transition: background 0s;
 }
 
 .red {

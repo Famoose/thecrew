@@ -1,5 +1,10 @@
-<div class="card">
-    <div class="card-body mb-3">
-        <p class="card-text">5</p>
-    </div>
+<div
+    (click)="onCardClick(card)"
+    class="card ripple"
+    *ngIf="card"
+    [ngClass]="card.color.toLocaleLowerCase()"
+>
+    <p class="card-text" style="width: inherit; height: inherit">
+        {{ card.value }}
+    </p>
 </div>

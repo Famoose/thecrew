@@ -1,5 +1,5 @@
-<div>
-    <div *ngFor="let card of cards">
-        <app-card></app-card>
+<div class="handCardsContainer">
+    <div *ngFor="let card of cards" class="handCards">
+        <app-card [card]="card"></app-card>
     </div>
 </div>
