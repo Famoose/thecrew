@@ -32,11 +32,23 @@ export type Round = {
     winner: Session | undefined
 }
 
+export type QuestResult = {
+    quest: Quest
+    player: Session
+    fulfilled: boolean
+}
+
+export type GameResult = {
+    won: boolean
+    questResults: QuestResult[]
+}
+
 export type Game = {
     _id: string
     lobby: Lobby
     questPlayers: QuestPlayer[]
     rounds: Round[]
+    result?: GameResult
 }
 
 export const createGameRepository = (database: Db): GameRepository => {
@@ -57,6 +69,7 @@ export const createGameRepository = (database: Db): GameRepository => {
                 lobby: game.lobby,
                 questPlayers: game.questPlayers,
                 rounds: game.rounds,
+                result: game.result,
             },
         }
         const updateResult = await collection.updateOne(query, update)

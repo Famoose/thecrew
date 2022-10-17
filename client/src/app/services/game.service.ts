@@ -38,7 +38,7 @@ export class GameService {
     }
 
     onGameEnd() {
-        return this.gameSocket.fromEvent<Game>('game:onGameEnd')
+        return this.gameSocket.fromEvent<Game>('game:onEndGame')
     }
 
     playCard(gameId: string, card: Card) {

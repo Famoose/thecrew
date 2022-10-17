@@ -1,11 +1,11 @@
 import { Group, PlayerColor } from './repositories/group.repository'
-import { Lobby } from './repositories/lobby.repository'
+import { Lobby, LobbyStatus } from './repositories/lobby.repository'
 import { Session } from './repositories/session.repository'
 import { Game, QuestPlayer } from './repositories/game.repository'
 import { Mission } from './data/missions'
 import { Card } from './data/cards'
 
-export { Lobby, Group, Session, Game, PlayerColor, QuestPlayer }
+export { Lobby, Group, Session, Game, PlayerColor, QuestPlayer, LobbyStatus }
 export type Message = {
     groupId: string
     message: string

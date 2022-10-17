@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core'
 import { ActivatedRoute, Router } from '@angular/router'
-import { Lobby } from '../../../types'
 import { LobbyService } from '../../services/lobby.service'
 import { Subscription } from 'rxjs'
 import { Mission, missions } from 'src/staticData'
 import { AuthService } from '../../services/auth.service'
+import { Lobby, LobbyStatus } from 'src/types'
 
 @Component({
     selector: 'app-lobby',
@@ -48,14 +48,14 @@ export class LobbyComponent implements OnInit, OnDestroy {
         this.onGameStartedSubscription = this.lobbyService
             .onGameStarted()
             .subscribe((game) => {
-                this.router.navigate(['game', game._id])
+                this.router.navigate(['game', game._id]).then()
             })
     }
 
     startGame() {
         if (this.groupId != null) {
             this.lobbyService.startGame(this.groupId).subscribe((game) => {
-                this.router.navigate(['game', game._id])
+                this.router.navigate(['game', game._id]).then()
             })
         }
     }
@@ -72,6 +72,28 @@ export class LobbyComponent implements OnInit, OnDestroy {
     selectMission(mission: Mission) {
         if (this.groupId) {
             this.lobbyService.setMission(this.groupId, mission).subscribe()
+        }
+    }
+
+    showOwnerView() {
+        return (
+            this.lobby &&
+            this.lobby.owner.userID === this.userID &&
+            this.lobby.status === LobbyStatus.Forming
+        )
+    }
+
+    isInGame() {
+        return (
+            this.lobby &&
+            this.lobby.status === LobbyStatus.InGame &&
+            this.lobby.activeGame
+        )
+    }
+
+    navigateToGame() {
+        if (this.lobby) {
+            this.router.navigate(['game', this.lobby.activeGame]).then()
         }
     }
 }

@@ -1,11 +1,13 @@
 import { TranslatedString } from './missions'
 import { Game } from '../repositories/game.repository'
+import { Session } from '../repositories/session.repository'
+import { Color } from './cards'
 
 export type Quest = {
     _id: string
     name: TranslatedString
     points: { [key: number]: number }
-    questFulfilled?: (game: Game) => boolean
+    questFulfilled: (game: Game, player: Session) => boolean
 }
 
 export const quests: Quest[] = [
@@ -21,11 +23,25 @@ export const quests: Quest[] = [
             4: 3,
             5: 3,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonCards = game.rounds
+                .filter((r) => r.winner?.userID === player.userID)
+                .flatMap((r) => r.moves)
+            if (
+                wonCards.find(
+                    (c) => c.card.color === Color.BLUE && c.card.value === 1
+                ) &&
+                wonCards.find(
+                    (c) => c.card.color === Color.BLUE && c.card.value === 2
+                ) &&
+                wonCards.find(
+                    (c) => c.card.color === Color.BLUE && c.card.value === 3
+                )
+            ) {
+                return true
+            }
+            return false
+        },
     },
     {
         _id: '2',
@@ -39,11 +55,22 @@ export const quests: Quest[] = [
             4: 3,
             5: 3,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonCards = game.rounds
+                .filter((r) => r.winner?.userID === player.userID)
+                .flatMap((r) => r.moves)
+            if (
+                wonCards.find(
+                    (c) => c.card.color === Color.BLUE && c.card.value === 7
+                ) &&
+                wonCards.find(
+                    (c) => c.card.color === Color.YELLOW && c.card.value === 9
+                )
+            ) {
+                return true
+            }
+            return false
+        },
     },
     {
         _id: '3',
@@ -57,11 +84,15 @@ export const quests: Quest[] = [
             4: 2,
             5: 2,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonRounds = game.rounds.filter(
+                (r) => r.winner?.userID === player.userID
+            )
+            if (wonRounds.length === 1) {
+                return true
+            }
+            return false
+        },
     },
     {
         _id: '4',
@@ -75,11 +106,15 @@ export const quests: Quest[] = [
             4: 2,
             5: 2,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonCards = game.rounds
+                .filter((r) => r.winner?.userID === player.userID)
+                .flatMap((r) => r.moves)
+            if (!wonCards.find((c) => c.card.color === Color.YELLOW)) {
+                return true
+            }
+            return false
+        },
     },
     {
         _id: '5',
@@ -93,11 +128,15 @@ export const quests: Quest[] = [
             4: 4,
             5: 5,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonCards = game.rounds
+                .filter((r) => r.winner?.userID === player.userID)
+                .flatMap((r) => r.moves)
+            if (!wonCards.find((c) => c.card.value === 5)) {
+                return true
+            }
+            return false
+        },
     },
     {
         _id: '6',
@@ -111,11 +150,15 @@ export const quests: Quest[] = [
             4: 3,
             5: 3,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonCards = game.rounds
+                .filter((r) => r.winner?.userID === player.userID)
+                .flatMap((r) => r.moves)
+            if (wonCards.filter((c) => c.card.color === Color.RED).length > 4) {
+                return true
+            }
+            return false
+        },
     },
     {
         _id: '7',
@@ -129,11 +172,19 @@ export const quests: Quest[] = [
             4: 1,
             5: 1,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonCards = game.rounds
+                .filter((r) => r.winner?.userID === player.userID)
+                .flatMap((r) => r.moves)
+            const greenCards = wonCards.filter(
+                (c) => c.card.color === Color.GREEN
+            )
+            const redCards = wonCards.filter((c) => c.card.color === Color.RED)
+            if (redCards > greenCards) {
+                return true
+            }
+            return false
+        },
     },
     {
         _id: '8',
@@ -147,11 +198,19 @@ export const quests: Quest[] = [
             4: 4,
             5: 5,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonRounds = game.rounds.filter(
+                (r) => r.winner?.userID === player.userID
+            )
+            if (
+                wonRounds.some((r) =>
+                    r.moves.every((c) => c.card.value % 2 === 1)
+                )
+            ) {
+                return true
+            }
+            return false
+        },
     },
     {
         _id: '9',
@@ -165,10 +224,14 @@ export const quests: Quest[] = [
             4: 1,
             5: 1,
         },
-        // questFulfilled: (gameState: GameState, player: Player) => {
-        //     gameState.player.cards.
-        //     return true;
-        //     return false;
-        // }
+        questFulfilled: (game: Game, player: Session) => {
+            const wonCards = game.rounds
+                .filter((r) => r.winner?.userID === player.userID)
+                .flatMap((r) => r.moves)
+            if (!wonCards.find((c) => c.card.value === 9)) {
+                return true
+            }
+            return false
+        },
     },
 ]

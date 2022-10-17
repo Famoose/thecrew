@@ -8,7 +8,10 @@
     </div>
 
     <!-- player cards -->
-    <div class="container player-cards">
+    <div
+        class="container player-cards"
+        [ngClass]="{ 'players-turn': this.isPlayersTurn() }"
+    >
         <app-cards
             [cards]="playerCards"
             (cardClick)="playCard($event)"

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core'
-import { Game } from 'src/types'
+import { Quest, quests } from 'src/staticData'
+import { Game, Session } from 'src/types'
 
 @Component({
     selector: 'app-quests',
@@ -12,5 +13,13 @@ export class QuestsComponent {
 
     toggleQuestWindow() {
         this.collapsed = !this.collapsed
+    }
+
+    isQuestFulfilled(quest: Quest, player: Session) {
+        const staticQuest = quests.find((q) => q._id === quest._id)
+        if (staticQuest && this.game) {
+            return staticQuest.questFulfilled(this.game, player)
+        }
+        return false
     }
 }

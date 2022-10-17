@@ -7,6 +7,7 @@ import { Component, Input, OnInit } from '@angular/core'
 })
 export class PlayerComponent {
     @Input() playerColor: string | undefined
+    @Input() playersTurn: boolean | undefined
 
     constructor() {}
 }

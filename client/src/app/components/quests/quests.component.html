@@ -28,6 +28,19 @@
             [ngStyle]="{ color: game.lobby.group.colors[qp.player.userID] }"
         >
             {{ qp.quest.name.de }}
+            <i
+                class="bi"
+                [ngClass]="{
+                    'bi-exclamation-square failed': !this.isQuestFulfilled(
+                        qp.quest,
+                        qp.player
+                    ),
+                    'bi-check-square fulfilled': this.isQuestFulfilled(
+                        qp.quest,
+                        qp.player
+                    )
+                }"
+            ></i>
         </li>
     </ul>
 </div>

@@ -4,6 +4,7 @@ import {
     GameRepository,
     Move,
     QuestPlayer,
+    QuestResult,
     Round,
 } from '../repositories/game.repository'
 import { LobbyService } from './lobby.service'
@@ -11,7 +12,7 @@ import { Lobby, LobbyStatus } from '../repositories/lobby.repository'
 import { Session } from '../repositories/session.repository'
 import { GroupService } from './group.service'
 import crypto from 'crypto'
-import { Quest } from '../data/quests'
+import { Quest, quests } from '../data/quests'
 import { Card, cards, CardType } from '../data/cards'
 import { Group } from '../repositories/group.repository'
 
@@ -28,6 +29,7 @@ export type GameService = {
     createRound(game: Game): Round
     getNextPlayer(currentRound: Round, group: Group): Session
     updateGame(game: Game): Promise<boolean>
+    endGame(game: Game): Promise<Game>
 }
 
 export const createGameService = (
@@ -96,6 +98,7 @@ export const createGameService = (
                             questPlayers: distributeQuestToPlayers(lobby),
                             rounds: [],
                         }
+                        lobby.activeGame = newGame._id
                         newGame.rounds.push(createRound(newGame))
 
                         const scc = await gameRepository.createGame(newGame)
@@ -290,6 +293,32 @@ export const createGameService = (
         throw new Error('cards players had no player')
     }
 
+    const endGame = async (game: Game) => {
+        const questResults: QuestResult[] = game.questPlayers.map((cp) => {
+            const staticQuest = quests.find((sq) => sq._id === cp.quest._id)
+            if (staticQuest) {
+                const fulfilled = staticQuest.questFulfilled(game, cp.player)
+                return {
+                    quest: cp.quest,
+                    fulfilled,
+                    player: cp.player,
+                }
+            }
+            throw new Error('Quest not found')
+        })
+        game.result = {
+            won: questResults.every((q) => q.fulfilled),
+            questResults: questResults,
+        }
+        await updateGame(game)
+
+        game.lobby.status = LobbyStatus.Forming
+        game.lobby.activeGame = undefined
+        await lobbyService.updateLobby(game.lobby)
+
+        return game
+    }
+
     return {
         startGame,
         getGame,
@@ -299,5 +328,6 @@ export const createGameService = (
         getCurrentRound,
         checkIfPlayerIsAllowedToPlayCard,
         getNextPlayer,
+        endGame,
     }
 }

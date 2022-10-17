@@ -15,6 +15,7 @@ export class GameComponent implements OnInit {
     gameId: string | undefined
     playerCards: Card[] = []
     playedCards: Card[] = []
+
     constructor(
         private gameService: GameService,
         private autService: AuthService,
@@ -28,11 +29,25 @@ export class GameComponent implements OnInit {
             this.setPlayerCards()
             this.setPlayedCards()
         })
+
         this.gameService.onPlayedCard().subscribe((game) => {
             this.game = game
             this.setPlayerCards()
             this.setPlayedCards()
         })
+
+        this.gameService.onGameEnd().subscribe((game) => {
+            this.game = game
+            this.setPlayerCards()
+            this.setPlayedCards()
+            if (this.game.result?.won) {
+                alert('mission won')
+            } else {
+                alert('mission lost')
+            }
+            this.router.navigate(['/lobby', game.lobby.group._id]).then()
+        })
+
         this.activatedRoute.params.subscribe((params) => {
             this.gameId = params['gameId']
             if (this.gameId) {
@@ -59,10 +74,24 @@ export class GameComponent implements OnInit {
 
     setPlayerCards() {
         if (this.game) {
+            const currentRound = this.game.rounds[this.game.rounds.length - 1]
             this.playerCards =
-                this.game.rounds[this.game.rounds.length - 1].cardsPlayers.find(
-                    (cp) => cp.player.userID === this.autService.getUserID()
-                )?.cards || []
+                currentRound.cardsPlayers
+                    .find(
+                        (cp) => cp.player.userID === this.autService.getUserID()
+                    )
+                    ?.cards.filter((c) => {
+                        const playedCard = currentRound.moves.find(
+                            (m) =>
+                                m.player.userID === this.autService.getUserID()
+                        )?.card
+                        return !(
+                            playedCard &&
+                            c.value === playedCard.value &&
+                            c.type === playedCard.type &&
+                            c.color === playedCard.color
+                        )
+                    }) || []
         }
     }
 
@@ -72,5 +101,15 @@ export class GameComponent implements OnInit {
                 this.game.rounds.length - 1
             ].moves.map((m) => m.card)
         }
+    }
+
+    isPlayersTurn() {
+        if (this.game) {
+            const currentRound = this.game.rounds[this.game.rounds.length - 1]
+            return (
+                currentRound.nextPlayer.userID === this.autService.getUserID()
+            )
+        }
+        return false
     }
 }

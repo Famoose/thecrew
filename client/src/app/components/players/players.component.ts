@@ -19,4 +19,12 @@ export class PlayersComponent implements OnInit {
             )
         }
     }
+
+    isPlayersTurn(player: Session) {
+        if (this.game) {
+            const currentRound = this.game.rounds[this.game.rounds.length - 1]
+            return currentRound.nextPlayer.userID === player.userID
+        }
+        return false
+    }
 }

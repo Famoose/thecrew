@@ -3,6 +3,7 @@
         <div class="col justify-content-between" *ngFor="let player of players">
             <app-player
                 [playerColor]="game.lobby.group.colors[player.userID]"
+                [playersTurn]="isPlayersTurn(player)"
             ></app-player>
         </div>
     </div>

@@ -55,13 +55,17 @@ export const createGameController = (
                     if (
                         currentRound.cardsPlayers
                             .map((cp) => cp.cards.length)
-                            .every((l) => l === 1)
+                            .some((l) => l === 1)
                     ) {
-                        //todo end game
+                        //end game
+                        const endGame = await gameService.endGame(game)
+                        namespace.to(gameId).emit('game:onEndGame', endGame)
+                    } else {
+                        //new round
+                        game.rounds.push(gameService.createRound(game))
+                        await gameService.updateGame(game)
+                        namespace.to(gameId).emit('game:onNewRound', game)
                     }
-                    game.rounds.push(gameService.createRound(game))
-                    await gameService.updateGame(game)
-                    namespace.to(gameId).emit('game:onNewRound', game)
                 } else {
                     currentRound.nextPlayer = gameService.getNextPlayer(
                         currentRound,

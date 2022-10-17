@@ -25,6 +25,7 @@ export type Lobby = {
     minRequiredPlayer: number
     group: Group
     status: LobbyStatus
+    activeGame?: string
 }
 
 export const createLobbyRepository = (database: Db): LobbyRepository => {
@@ -46,6 +47,7 @@ export const createLobbyRepository = (database: Db): LobbyRepository => {
                 group: lobby.group,
                 status: lobby.status,
                 owner: lobby.owner,
+                activeGame: lobby.activeGame,
             },
         }
         const updateResult = await collection.updateOne(query, update)
