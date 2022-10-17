@@ -2,6 +2,7 @@ import { Db } from 'mongodb'
 import { Lobby } from './lobby.repository'
 import { Session } from './session.repository'
 import { Quest } from '../data/quests'
+import { Card } from '../data/cards'
 
 export type GameRepository = {
     findGame(id: string): Promise<Game | null>
@@ -13,11 +14,29 @@ export type QuestPlayer = {
     player: Session
     quest: Quest
 }
-//Todo erweiter mit auftragskarten - session id, stich history und activer spieler
+
+export type CardsPlayer = {
+    player: Session
+    cards: Card[]
+}
+
+export type Move = {
+    player: Session
+    card: Card
+}
+
+export type Round = {
+    nextPlayer: Session
+    cardsPlayers: CardsPlayer[]
+    moves: Move[]
+    winner: Session | undefined
+}
+
 export type Game = {
     _id: string
     lobby: Lobby
     questPlayers: QuestPlayer[]
+    rounds: Round[]
 }
 
 export const createGameRepository = (database: Db): GameRepository => {
@@ -37,6 +56,7 @@ export const createGameRepository = (database: Db): GameRepository => {
             $set: {
                 lobby: game.lobby,
                 questPlayers: game.questPlayers,
+                rounds: game.rounds,
             },
         }
         const updateResult = await collection.updateOne(query, update)

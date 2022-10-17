@@ -1,5 +1,5 @@
 <div
-    (click)="onCardClick(card)"
+    (click)="cardClicked(card)"
     class="card ripple"
     *ngIf="card"
     [ngClass]="card.color.toLocaleLowerCase()"

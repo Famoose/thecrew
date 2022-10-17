@@ -20,6 +20,7 @@ import { CardComponent } from './components/card/card.component'
 import { CardsComponent } from './components/cards/cards.component'
 import { PlayerComponent } from './components/player/player.component'
 import { QuestsComponent } from './components/quests/quests.component'
+import { PlayersComponent } from './components/players/players.component'
 
 @NgModule({
     declarations: [
@@ -33,6 +34,8 @@ import { QuestsComponent } from './components/quests/quests.component'
         CardsComponent,
         PlayerComponent,
         QuestsComponent,
+        PlayersComponent,
+        PlayersComponent,
     ],
     imports: [BrowserModule, AppRoutingModule, SocketIoModule, FormsModule],
     providers: [MainSocket, LobbySocket, ChatSocket, GameSocket],

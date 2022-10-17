@@ -33,7 +33,7 @@ export const createLobbyService = (
             group,
             owner,
             maxAllowedPlayer: 5,
-            minRequiredPlayer: 3,
+            minRequiredPlayer: 2,
             status: LobbyStatus.Forming,
         }
         await lobbyRepository.createLobby(lobby)

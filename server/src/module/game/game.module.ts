@@ -7,9 +7,14 @@ export const createGameModule = (io: ServerSpecifyType, services: Services) => {
 
     const namespace = io.of('game')
 
-    const { getGame } = createGameController(sessionService, gameService)
+    const { getGame, playCard } = createGameController(
+        namespace,
+        sessionService,
+        gameService
+    )
 
     namespace.on('connection', (socket) => {
         socket.on('game:get', getGame)
+        socket.on('game:playCard', playCard)
     })
 }

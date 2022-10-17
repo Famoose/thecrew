@@ -1,0 +1,9 @@
+<div class="container">
+    <div class="row flex-wrap" *ngIf="game">
+        <div class="col justify-content-between" *ngFor="let player of players">
+            <app-player
+                [playerColor]="game.lobby.group.colors[player.userID]"
+            ></app-player>
+        </div>
+    </div>
+</div>

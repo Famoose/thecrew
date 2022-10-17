@@ -1,10 +1,11 @@
 import { Group, PlayerColor } from './repositories/group.repository'
 import { Lobby } from './repositories/lobby.repository'
 import { Session } from './repositories/session.repository'
-import { Game } from './repositories/game.repository'
+import { Game, QuestPlayer } from './repositories/game.repository'
 import { Mission } from './data/missions'
+import { Card } from './data/cards'
 
-export { Lobby, Group, Session, Game, PlayerColor }
+export { Lobby, Group, Session, Game, PlayerColor, QuestPlayer }
 export type Message = {
     groupId: string
     message: string
@@ -34,6 +35,11 @@ export interface ClientToServerEvents {
     'game:get': (
         groupId: string,
         _callback: (game: Game | null) => void
+    ) => void
+    'game:playCard': (
+        gameId: string,
+        card: Card,
+        _callback: (success: boolean) => void
     ) => void
 
     joinChatGroup: (groupId: string, _callback: () => void) => void

@@ -1,14 +1,33 @@
 <div class="quest-card card mb-3" style="width: 18rem">
-    <h5 class="card-header px-3">Quests</h5>
-    <ul class="list-group">
-        <li class="list-group-item px-3" style="color: ORANGE">
-            Ich gewinne keine gelben Karten.
-        </li>
-        <li class="list-group-item px-3" style="color: YELLOW">
-            Ich gewinne genau einen Stich.
-        </li>
-        <li class="list-group-item px-3" style="color: PURPLE">
-            Ich gewinne keine 5.
+    <div class="card-header">
+        <div class="row g-0 justify-content-between align-items-center">
+            <h5 class="col-10 card-title">Quests</h5>
+            <div class="col-2">
+                <button
+                    class="btn btn-secondary"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target=".quest-body"
+                    (click)="toggleQuestWindow()"
+                >
+                    <i
+                        class="bi"
+                        [ngClass]="{
+                            'bi-chevron-up': !this.collapsed,
+                            'bi-chevron-down': this.collapsed
+                        }"
+                    ></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <ul class="list-group collapse show quest-body" *ngIf="game">
+        <li
+            class="list-group-item px-3"
+            *ngFor="let qp of game.questPlayers"
+            [ngStyle]="{ color: game.lobby.group.colors[qp.player.userID] }"
+        >
+            {{ qp.quest.name.de }}
         </li>
     </ul>
 </div>

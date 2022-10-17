@@ -1,16 +1,12 @@
-import { Component, OnInit } from '@angular/core'
+import { Component, Input, OnInit } from '@angular/core'
 
 @Component({
     selector: 'app-player',
     templateUrl: './player.component.html',
     styleUrls: ['./player.component.scss'],
 })
-export class PlayerComponent implements OnInit {
-    playerColor: string = 'ORANGE'
+export class PlayerComponent {
+    @Input() playerColor: string | undefined
 
     constructor() {}
-
-    ngOnInit(): void {
-        console.log('Hello Player')
-    }
 }

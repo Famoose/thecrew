@@ -1,5 +1,5 @@
 <div class="handCardsContainer">
     <div *ngFor="let card of cards" class="handCards">
-        <app-card [card]="card"></app-card>
+        <app-card [card]="card" (cardClick)="cardClicked($event)"></app-card>
     </div>
 </div>
