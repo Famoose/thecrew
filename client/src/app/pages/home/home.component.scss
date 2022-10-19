@@ -2,6 +2,22 @@
     .home-div-buttons {
         display: flex;
     }
+    .home-div-info {
+        margin-bottom: 20%;
+    }
+    .home-container-heading {
+        margin-bottom: 3rem;
+    }
+}
+
+@media (max-width: 699px) {
+    .heading {
+        text-align: left;
+    }
+}
+
+.heading {
+    padding: 10px;
 }
 
 div {
@@ -16,7 +32,6 @@ div {
 }
 
 .home-div-info {
-    margin-bottom: 20%;
     text-align: left;
     padding: 10px;
 }
