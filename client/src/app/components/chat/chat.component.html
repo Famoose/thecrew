@@ -1,7 +1,16 @@
 <div class="chat-card card w-auto">
     <div class="card-header">
         <div class="row g-0 justify-content-between align-items-center">
-            <h5 class="col-10 card-title">Chat</h5>
+            <h5 class="col-10 card-title">
+                Chat
+                <span
+                    class="badge rounded-pill notification"
+                    *ngIf="notifications > 0"
+                >
+                    {{ notifications }}
+                    <span class="visually-hidden">unread messages</span>
+                </span>
+            </h5>
             <div class="col-2">
                 <button
                     class="btn btn-secondary"
@@ -21,7 +30,11 @@
             </div>
         </div>
     </div>
-    <div #chatBody class="card-body collapse show multi-collapse">
+    <div
+        #chatBody
+        class="card-body collapse multi-collapse"
+        [ngClass]="{ show: !collapsed }"
+    >
         <p
             class="m-0 p-0"
             *ngFor="let m of messages"
@@ -30,7 +43,10 @@
             {{ m.message }}
         </p>
     </div>
-    <div class="card-footer collapse show multi-collapse">
+    <div
+        class="card-footer collapse multi-collapse"
+        [ngClass]="{ show: !collapsed }"
+    >
         <div class="row text-center">
             <div class="col-9">
                 <input

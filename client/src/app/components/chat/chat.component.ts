@@ -12,6 +12,8 @@ import { ChatService } from '../../services/chat.service'
 import { Subscription } from 'rxjs'
 import { Message } from 'src/types'
 
+const CHAT_COLLAPSE_KEY = 'chat-collapsed'
+
 @Component({
     selector: 'app-chat',
     templateUrl: './chat.component.html',
@@ -23,6 +25,7 @@ export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
     message = ''
     messages: Message[] = []
     collapsed: boolean = false
+    notifications = 0
 
     receiveMessageSubscription: Subscription | undefined
 
@@ -32,12 +35,19 @@ export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
     ) {}
 
     ngOnInit(): void {
+        const isCollapsed = localStorage.getItem(CHAT_COLLAPSE_KEY)
+        if (isCollapsed === 'true') {
+            this.collapsed = true
+        }
         if (this.groupId) {
             this.chatService.joinChatGroup(this.groupId).subscribe()
             this.receiveMessageSubscription = this.chatService
                 .receiveMessage()
                 .subscribe((newMessage) => {
                     this.messages.push(newMessage)
+                    if (this.collapsed) {
+                        this.notifications++
+                    }
                 })
         }
     }
@@ -52,6 +62,10 @@ export class ChatComponent implements OnInit, AfterViewChecked, OnDestroy {
 
     toggleChatWindow() {
         this.collapsed = !this.collapsed
+        localStorage.setItem(CHAT_COLLAPSE_KEY, String(this.collapsed))
+        if (!this.collapsed) {
+            this.notifications = 0
+        }
     }
 
     ngAfterViewChecked(): void {
