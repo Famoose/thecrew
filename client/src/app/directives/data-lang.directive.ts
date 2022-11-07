@@ -26,8 +26,16 @@ export class DataLangDirective implements OnInit, OnDestroy {
     setInnerHtml() {
         if (this.appDataLang) {
             // @ts-ignore
-            this.el.nativeElement.innerText =
-                this.appDataLang[this.translateService.currentLang]
+            let key: 'de' | 'fr' | 'en'
+            if (this.translateService.currentLang) {
+                // @ts-ignore
+                key = this.translateService.currentLang
+            } else {
+                // @ts-ignore
+                key = this.translateService.defaultLang
+            }
+            const text = this.appDataLang[key]
+            this.el.nativeElement.innerText = text
         }
     }
 
