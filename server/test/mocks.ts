@@ -1,7 +1,7 @@
 import { Game, GameRepository } from '../src/repositories/game.repository'
 import { LobbyService } from '../src/services/lobby.service'
 import { Lobby, LobbyRepository } from '../src/repositories/lobby.repository'
-import { Group } from '../src/repositories/group.repository'
+import { Group, GroupRepository } from '../src/repositories/group.repository'
 import { GroupService } from '../src/services/group.service'
 
 export const mockData = {
@@ -65,7 +65,7 @@ export const createMocks = (mockData: any) => {
             return Promise.resolve(mockData.group as Group)
         }),
         leaveGroup: jest.fn(() => {
-            return Promise.resolve()
+            return Promise.resolve(mockData.group as Group)
         }),
         findGroupBySession: jest.fn(() => {
             return Promise.resolve(mockData.group as Group)
@@ -95,5 +95,29 @@ export const createMocks = (mockData: any) => {
             return Promise.resolve(true)
         }),
     }
-    return { gameRepoMock, lobbyRepoMock, lobbyServiceMock, groupServiceMock }
+
+    const groupRepoMock: GroupRepository = {
+        findGroup: jest.fn(() => {
+            return Promise.resolve(mockData.group as Group)
+        }),
+        createGroup: jest.fn(() => {
+            return Promise.resolve(true)
+        }),
+        updateGroup: jest.fn(() => {
+            return Promise.resolve(true)
+        }),
+        findAllGroups: jest.fn(() => {
+            return Promise.resolve([mockData.group as Group])
+        }),
+        findGroupBySession: jest.fn(() => {
+            return Promise.resolve(mockData.group as Group)
+        }),
+    }
+    return {
+        gameRepoMock,
+        lobbyRepoMock,
+        lobbyServiceMock,
+        groupServiceMock,
+        groupRepoMock,
+    }
 }

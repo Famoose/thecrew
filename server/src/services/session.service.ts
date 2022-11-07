@@ -32,6 +32,6 @@ export const createSessionService = (
         createSession,
         findAllSessions,
         checkValidSession,
-        anonymizeSession: anonymizeSession,
+        anonymizeSession,
     }
 }

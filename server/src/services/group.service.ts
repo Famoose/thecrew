@@ -11,7 +11,7 @@ export type GroupService = {
     createGroup(): Promise<Group>
     joinGroup(id: string, session: Session): Promise<Group>
     findGroupById(id: string): Promise<Group | null>
-    leaveGroup(id: string, session: Session): Promise<void>
+    leaveGroup(id: string, session: Session): Promise<Group>
     findGroupBySession(session: Session): Promise<Group | null>
     isSessionInGroup(group: Group, session: Session): boolean
 }
@@ -62,6 +62,7 @@ export const createGroupService = (
             if (index !== -1) {
                 foundGroup.groupMembers.splice(index, 1)
                 await groupRepository.updateGroup(foundGroup)
+                return foundGroup
             }
         }
         throw new Error('Group not Found')
