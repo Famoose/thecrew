@@ -12,7 +12,7 @@ import {
 import { Group } from '../../src/repositories/group.repository'
 import { Mission, missions } from '../../src/data/missions'
 
-describe('game service tests', () => {
+describe('lobby service tests', () => {
     let lobbyService: LobbyService
     let deps: {
         lobbyRepoMock: LobbyRepository

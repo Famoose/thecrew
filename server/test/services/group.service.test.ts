@@ -8,7 +8,7 @@ import {
     PlayerColor,
 } from '../../src/repositories/group.repository'
 
-describe('game service tests', () => {
+describe('group service tests', () => {
     let groupService: GroupService
     let deps: {
         groupRepoMock: GroupRepository
