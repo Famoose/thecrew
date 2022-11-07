@@ -6,14 +6,10 @@ import { Card } from 'src/staticData'
     templateUrl: './card.component.html',
     styleUrls: ['./card.component.scss'],
 })
-export class CardComponent implements OnInit {
+export class CardComponent {
     @Input() card: Card | undefined
     @Output() cardClick = new EventEmitter<Card>()
     constructor() {}
-
-    ngOnInit(): void {
-        console.log('Hello World')
-    }
 
     cardClicked(card: Card) {
         console.log(card.color, card.value, card.type)

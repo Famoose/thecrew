@@ -1,0 +1,54 @@
+{
+    "pages": {
+        "home": {
+            "search_lobby": "Lobby suchen",
+            "search_lobby_description": "Suche Lobbies und trete einem Spiel bei",
+            "search_lobby_action": "Lobby suchen",
+            "create_lobby": "Lobby erstellen",
+            "create_lobby_description": "Erstelle dein eigenes Spiel und lade deine Freunde ein",
+            "create_lobby_action": "Lobby erstellen",
+            "game_description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        },
+        "game": {
+            "result_won": "Dein Team hat die Mission bestanden",
+            "result_fail": "Dein Team hat die Mission nicht bestanden",
+            "back": "Gehe zurück zur Lobby"
+        },
+        "lobbieslist": {
+            "table": {
+                "id": "ID",
+                "players": "Spieler",
+                "mission": "Mission",
+                "state": {
+                    "title": "Status",
+                    "FORMING": "Formieren",
+                    "IN_GAME": "Im Spiel"
+                }
+            },
+            "join": "Beitreten"
+        },
+        "lobby": {
+            "player_min": "Minimale anzahl Spieler:",
+            "player_max": "Maximal anzahl Spieler:",
+            "players": "Spieler:",
+            "admin": {
+                "choose_mission": "Wähle eine Mission",
+                "start_game": "Spiel starten"
+            },
+            "join_game": "Spiel beitreten"
+        }
+    },
+    "components": {
+        "chat": {
+            "chat": "Chat",
+            "unread_messages": "Ungelesene Nachrichten"
+        },
+        "lang": {
+            "change_lang": "Sprache ändern",
+            "choose_lang": "Sprache wählen",
+            "de": "Deutsch",
+            "fr": "Französisch",
+            "en": "Englisch"
+        }
+    }
+}

@@ -23,11 +23,11 @@
     </div>
     <ul class="list-group collapse show quest-body" *ngIf="game">
         <li
-            class="list-group-item px-3"
+            class="list-group-item px-3 d-inline-flex"
             *ngFor="let qp of game.questPlayers"
             [ngStyle]="{ color: game.lobby.group.colors[qp.player.userID] }"
         >
-            {{ qp.quest.name.de }}
+            <p class="col" [appDataLang]="qp.quest.name"></p>
             <i
                 class="bi"
                 [ngClass]="{

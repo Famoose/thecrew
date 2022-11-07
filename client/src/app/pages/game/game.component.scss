@@ -12,12 +12,22 @@
     margin-top: 40px;
 }
 
+@-webkit-keyframes pulse {
+    0% {
+        box-shadow: 0 0 8px #ffded6, inset 0 0 8px #ffded6;
+    }
+    50% {
+        box-shadow: 0 0 16px #ffded6, inset 0 0 14px #ffded6;
+    }
+    100% {
+        box-shadow: 0 0 8px #ffded6, inset 0 0 8px #ffded6;
+    }
+}
+
 .players-turn {
+    background-color: transparent;
     border-radius: 20px;
-    box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.75),
-        0 0 50px 50px rgba(255, 255, 255, 0.75) inset;
-    -webkit-box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.75),
-        0 0 50px 50px rgba(255, 255, 255, 0.75) inset;
-    -moz-box-shadow: 0 0 50px 50px rgba(255, 255, 255, 0.75),
-        0 0 50px 50px rgba(255, 255, 255, 0.75) inset;
+    box-shadow: 0 0 8px #ffded6, inset 0 0 8px #ffded6;
+    -webkit-animation: pulse 2s linear 1s infinite;
+    padding: 10px;
 }

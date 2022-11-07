@@ -2,13 +2,15 @@
     <div class="card-header">
         <div class="row g-0 justify-content-between align-items-center">
             <h5 class="col-10 card-title">
-                Chat
+                {{ 'components.chat.chat' | translate }}
                 <span
                     class="badge rounded-pill notification"
                     *ngIf="notifications > 0"
                 >
                     {{ notifications }}
-                    <span class="visually-hidden">unread messages</span>
+                    <span class="visually-hidden">{{
+                        'components.chat.unread_messages' | translate
+                    }}</span>
                 </span>
             </h5>
             <div class="col-2">

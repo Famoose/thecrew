@@ -2,20 +2,38 @@
     <app-quests [game]="game"></app-quests>
     <app-players [game]="game"></app-players>
 
-    <!-- played cards -->
-    <div class="container played-cards">
-        <app-cards [cards]="playedCards"></app-cards>
-    </div>
+    <ng-container *ngIf="!game.result">
+        <!-- played cards -->
+        <div class="container played-cards">
+            <app-cards [cards]="playedCards"></app-cards>
+        </div>
 
-    <!-- player cards -->
-    <div
-        class="container player-cards"
-        [ngClass]="{ 'players-turn': this.isPlayersTurn() }"
-    >
-        <app-cards
-            [cards]="playerCards"
-            (cardClick)="playCard($event)"
-        ></app-cards>
+        <!-- player cards -->
+        <div
+            class="container player-cards"
+            [ngClass]="{ 'players-turn': this.isPlayersTurn() }"
+        >
+            <app-cards
+                [cards]="playerCards"
+                (cardClick)="playCard($event)"
+            ></app-cards>
+        </div>
+    </ng-container>
+    <div class="container mt-5" *ngIf="game.result">
+        <h2 *ngIf="game.result.won">
+            {{ 'pages.game.result_won' | translate }}
+        </h2>
+        <h2 *ngIf="!game.result.won">
+            {{ 'pages.game.result_fail' | translate }}
+        </h2>
+        <div>
+            <a
+                class="btn btn-sm btn-primary mt-5"
+                [routerLink]="'/lobby/' + game.lobby.group._id"
+            >
+                {{ 'pages.game.back' | translate }}
+            </a>
+        </div>
     </div>
 </div>
 

@@ -1,0 +1,54 @@
+{
+    "pages": {
+        "home": {
+            "search_lobby": "Recherche dans le lobby",
+            "search_lobby_description": "Recherchez les lobbies de jeux répertoriés à rejoindre.",
+            "search_lobby_action": "Recherche dans le lobb",
+            "create_lobby": "Créer un nouveau lobby",
+            "create_lobby_description": "Créez votre propre jeu et invitez vos amis",
+            "create_lobby_action": "Créer un nouveau lobby",
+            "game_description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+        },
+        "game": {
+            "result_won": "Votre équipe a gagné la mission",
+            "result_fail": "Votre équipe a échoué la mission",
+            "back": "Retourner au lobby"
+        },
+        "lobbieslist": {
+            "table": {
+                "id": "ID",
+                "players": "Joueurs",
+                "mission": "Mission",
+                "state": {
+                    "title": "État",
+                    "FORMING": "Formation",
+                    "IN_GAME": "En jeu"
+                }
+            },
+            "join": "Rejoignez"
+        },
+        "lobby": {
+            "player_min": "Minimum de joueurs requis :",
+            "player_max": "Le maximum de joueurs :",
+            "players": "Joueurs:",
+            "admin": {
+                "choose_mission": "Choisissez une mission",
+                "start_game": "Début du jeu"
+            },
+            "join_game": "Rejoindre le jeu"
+        }
+    },
+    "components": {
+        "chat": {
+            "chat": "Chat",
+            "unread_messages": "Messages non lus"
+        },
+        "lang": {
+            "change_lang": "Changer la langue",
+            "choose_lang": "Choisir la langue",
+            "de": "Allemand",
+            "fr": "Français",
+            "en": "Anglais"
+        }
+    }
+}

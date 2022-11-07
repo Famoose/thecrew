@@ -4,37 +4,28 @@
         <h1 class="heading">The Crew</h1>
     </div>
     <div class="home-div-info">
-        <p>
-            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-            nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-            erat, sed diam voluptua. At vero eos et accusam et justo duo dolores
-            et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est
-            Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
-            sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore
-            et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-            accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren,
-            no sea takimata sanctus est Lorem ipsum dolor sit amet.
-        </p>
+        <p>{{ 'pages.home.game_description' | translate }}</p>
     </div>
     <div class="home-div-buttons">
         <div class="home-container-btn">
-            <h2>Search Lobby</h2>
-            <p>Search for listed game lobbies to join.</p>
+            <h2>{{ 'pages.home.search_lobby' | translate }}</h2>
+            <p>{{ 'pages.home.search_lobby_description' | translate }}</p>
             <button
                 class="btn btn-lg btn-primary"
                 routerLink="/lobbieslist"
                 routerLinkActive="active"
                 ariaCurrentWhenActive="page"
             >
-                search lobby
+                {{ 'pages.home.search_lobby_action' | translate }}
             </button>
         </div>
         <div class="home-container-btn">
-            <h2>Create New Lobby</h2>
-            <p>Create your own game and invite your friends.</p>
+            <h2>{{ 'pages.home.create_lobby' | translate }}</h2>
+            <p>{{ 'pages.home.create_lobby_description' | translate }}</p>
             <button class="btn btn-lg btn-primary" (click)="createLobby()">
-                create lobby
+                {{ 'pages.home.create_lobby_action' | translate }}
             </button>
         </div>
     </div>
+    <app-lang-selector class="mt-5"></app-lang-selector>
 </div>

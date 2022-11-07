@@ -6,10 +6,18 @@
         <table class="table table-list">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Players</th>
-                    <th scope="col">Mission</th>
-                    <th scope="col">State</th>
+                    <th scope="col">
+                        {{ 'pages.lobbieslist.table.id' | translate }}
+                    </th>
+                    <th scope="col">
+                        {{ 'pages.lobbieslist.table.players' | translate }}
+                    </th>
+                    <th scope="col">
+                        {{ 'pages.lobbieslist.table.mission' | translate }}
+                    </th>
+                    <th scope="col">
+                        {{ 'pages.lobbieslist.table.state.title' | translate }}
+                    </th>
                     <th scope="col"></th>
                 </tr>
             </thead>
@@ -19,8 +27,16 @@
                     <td data-label="Players">
                         {{ lobby.group.groupMembers.length }}
                     </td>
-                    <td data-label="Mission">{{ lobby.mission }}</td>
-                    <td data-label="State">{{ lobby.status }}</td>
+                    <td
+                        data-label="Mission"
+                        [appDataLang]="lobby.mission?.name"
+                    ></td>
+                    <td data-label="State">
+                        {{
+                            'pages.lobbieslist.table.state.' + lobby.status
+                                | translate
+                        }}
+                    </td>
                     <td data-label=" ">
                         <button
                             class="btn btn-sm btn-primary"
@@ -28,7 +44,7 @@
                             routerLinkActive="active"
                             ariaCurrentWhenActive="page"
                         >
-                            join
+                            {{ 'pages.lobbieslist.join' | translate }}
                         </button>
                     </td>
                 </tr>

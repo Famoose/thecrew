@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core'
+import { APP_INITIALIZER, NgModule } from '@angular/core'
 import { BrowserModule } from '@angular/platform-browser'
 
 import { AppRoutingModule } from './app-routing.module'
@@ -21,6 +21,19 @@ import { CardsComponent } from './components/cards/cards.component'
 import { PlayerComponent } from './components/player/player.component'
 import { QuestsComponent } from './components/quests/quests.component'
 import { PlayersComponent } from './components/players/players.component'
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core'
+import { HttpClient, HttpClientModule } from '@angular/common/http'
+import { TranslateHttpLoader } from '@ngx-translate/http-loader'
+import { LangSelectorComponent } from './components/lang-selector/lang-selector.component'
+import {
+    initLanguageService,
+    LanguageService,
+} from './services/language.service'
+import { DataLangDirective } from './directives/data-lang.directive'
+
+export function HttpLoaderFactory(http: HttpClient) {
+    return new TranslateHttpLoader(http)
+}
 
 @NgModule({
     declarations: [
@@ -36,9 +49,37 @@ import { PlayersComponent } from './components/players/players.component'
         QuestsComponent,
         PlayersComponent,
         PlayersComponent,
+        LangSelectorComponent,
+        LangSelectorComponent,
+        DataLangDirective,
     ],
-    imports: [BrowserModule, AppRoutingModule, SocketIoModule, FormsModule],
-    providers: [MainSocket, LobbySocket, ChatSocket, GameSocket],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        SocketIoModule,
+        FormsModule,
+        HttpClientModule,
+        TranslateModule.forRoot({
+            defaultLanguage: 'en',
+            loader: {
+                provide: TranslateLoader,
+                useFactory: HttpLoaderFactory,
+                deps: [HttpClient],
+            },
+        }),
+    ],
+    providers: [
+        MainSocket,
+        LobbySocket,
+        ChatSocket,
+        GameSocket,
+        {
+            provide: APP_INITIALIZER,
+            useFactory: initLanguageService,
+            deps: [LanguageService],
+            multi: true,
+        },
+    ],
     bootstrap: [AppComponent],
 })
 export class AppModule {}

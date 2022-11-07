@@ -40,12 +40,12 @@ export class GameComponent implements OnInit {
             this.game = game
             this.setPlayerCards()
             this.setPlayedCards()
-            if (this.game.result?.won) {
-                alert('mission won')
-            } else {
-                alert('mission lost')
-            }
-            this.router.navigate(['/lobby', game.lobby.group._id]).then()
+            // if (this.game.result?.won) {
+            //     alert('mission won')
+            // } else {
+            //     alert('mission lost')
+            // }
+            // this.router.navigate(['/lobby', game.lobby.group._id]).then()
         })
 
         this.activatedRoute.params.subscribe((params) => {

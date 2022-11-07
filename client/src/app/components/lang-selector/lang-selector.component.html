@@ -1,0 +1,17 @@
+<div class="row justify-content-start align-items-center">
+    <h3 class="col-6 text-start">
+        {{ 'components.lang.change_lang' | translate }}
+    </h3>
+    <select
+        class="col form-select form-select"
+        [(ngModel)]="language"
+        (ngModelChange)="setLanguage()"
+    >
+        <option selected="selected" disabled value="">
+            {{ 'components.lang.choose_lang' | translate }}
+        </option>
+        <option value="de">{{ 'components.lang.de' | translate }}</option>
+        <option value="fr">{{ 'components.lang.fr' | translate }}</option>
+        <option value="en">{{ 'components.lang.en' | translate }}</option>
+    </select>
+</div>
