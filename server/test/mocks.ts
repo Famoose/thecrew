@@ -1,6 +1,6 @@
 import { Game, GameRepository } from '../src/repositories/game.repository'
 import { LobbyService } from '../src/services/lobby.service'
-import { Lobby } from '../src/repositories/lobby.repository'
+import { Lobby, LobbyRepository } from '../src/repositories/lobby.repository'
 import { Group } from '../src/repositories/group.repository'
 import { GroupService } from '../src/services/group.service'
 
@@ -74,5 +74,26 @@ export const createMocks = (mockData: any) => {
             return true
         }),
     }
-    return { gameRepoMock, lobbyServiceMock, groupServiceMock }
+
+    const lobbyRepoMock: LobbyRepository = {
+        findLobby: jest.fn(() => {
+            return Promise.resolve(mockData.lobby as Lobby)
+        }),
+        findLobbyByGroup: jest.fn(() => {
+            return Promise.resolve(mockData.lobby as Lobby)
+        }),
+        findLobbyByGroupId: jest.fn(() => {
+            return Promise.resolve(mockData.lobby as Lobby)
+        }),
+        findAllLobbies: jest.fn(() => {
+            return Promise.resolve([mockData.lobby as Lobby])
+        }),
+        createLobby: jest.fn(() => {
+            return Promise.resolve(true)
+        }),
+        updateLobby: jest.fn(() => {
+            return Promise.resolve(true)
+        }),
+    }
+    return { gameRepoMock, lobbyRepoMock, lobbyServiceMock, groupServiceMock }
 }
