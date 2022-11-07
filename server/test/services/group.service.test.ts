@@ -2,7 +2,7 @@ import {
     createGroupService,
     GroupService,
 } from '../../src/services/group.service'
-import { createMocks, mockData } from '../mocks'
+import { createMockData, createMocks } from '../mocks'
 import {
     GroupRepository,
     PlayerColor,
@@ -13,6 +13,8 @@ describe('group service tests', () => {
     let deps: {
         groupRepoMock: GroupRepository
     }
+    const mockData = createMockData()
+
     beforeEach(() => {
         deps = createMocks(mockData)
         groupService = createGroupService(deps.groupRepoMock)
@@ -53,14 +55,15 @@ describe('group service tests', () => {
     })
 
     describe('leaveGroup', () => {
-        const session = { _id: '1', userID: '1' }
-        mockData.group = <any>{
-            _id: '1',
-            groupMembers: [session],
-            availableColors: [PlayerColor.YELLOW],
-            colors: {},
-        }
         it('should leave group', async () => {
+            const session = { _id: '1', userID: '1' }
+            mockData.group = <any>{
+                _id: '1',
+                groupMembers: [session],
+                availableColors: [PlayerColor.YELLOW],
+                colors: {},
+            }
+
             const group = await groupService.leaveGroup('id', session)
             expect(group.groupMembers).toHaveLength(0)
             expect(deps.groupRepoMock.updateGroup).toHaveBeenCalledTimes(1)

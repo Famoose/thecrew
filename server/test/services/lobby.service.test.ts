@@ -3,7 +3,7 @@ import {
     LobbyService,
 } from '../../src/services/lobby.service'
 import { GroupService } from '../../src/services/group.service'
-import { createMocks, mockData } from '../mocks'
+import { createMockData, createMocks } from '../mocks'
 import {
     Lobby,
     LobbyRepository,
@@ -18,6 +18,9 @@ describe('lobby service tests', () => {
         lobbyRepoMock: LobbyRepository
         groupServiceMock: GroupService
     }
+
+    const mockData = createMockData()
+
     beforeEach(() => {
         deps = createMocks(mockData)
         lobbyService = createLobbyService(
@@ -136,14 +139,17 @@ describe('lobby service tests', () => {
 
     describe('setMission', () => {
         const session = { _id: '1', userID: '1' }
-        mockData.lobby = <any>{
-            _id: '',
-            owner: session,
-            group: {
-                groupMembers: [{}, {}, {}, {}, {}],
-            },
-            maxAllowedPlayer: 5,
-        }
+        beforeEach(() => {
+            mockData.lobby = <any>{
+                _id: '',
+                owner: session,
+                group: {
+                    groupMembers: [{}, {}, {}, {}, {}],
+                },
+                maxAllowedPlayer: 5,
+            }
+        })
+
         it('should set mission', async () => {
             await lobbyService.setMission('1', missions[0] as Mission, session)
             expect(deps.lobbyRepoMock.findLobbyByGroupId).toHaveBeenCalledTimes(

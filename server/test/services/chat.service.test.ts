@@ -1,5 +1,5 @@
 import { GroupService } from '../../src/services/group.service'
-import { createMocks, mockData } from '../mocks'
+import { createMockData, createMocks } from '../mocks'
 import { ChatService, createChatService } from '../../src/services/chat.service'
 
 describe('chat service tests', () => {
@@ -7,6 +7,9 @@ describe('chat service tests', () => {
     let deps: {
         groupServiceMock: GroupService
     }
+
+    const mockData = createMockData()
+
     beforeEach(() => {
         deps = createMocks(mockData)
         chatService = createChatService(deps.groupServiceMock)

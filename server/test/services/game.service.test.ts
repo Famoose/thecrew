@@ -3,7 +3,7 @@ import { LobbyStatus } from '../../src/types'
 import { missions } from '../../src/data/missions'
 import { cards, CardType, Color } from '../../src/data/cards'
 import { quests } from '../../src/data/quests'
-import { createMocks, mockData } from '../mocks'
+import { createMockData, createMocks } from '../mocks'
 import { GameRepository } from '../../src/repositories/game.repository'
 import { LobbyService } from '../../src/services/lobby.service'
 import { GroupService } from '../../src/services/group.service'
@@ -15,6 +15,9 @@ describe('game service tests', () => {
         lobbyServiceMock: LobbyService
         groupServiceMock: GroupService
     }
+
+    const mockData = createMockData()
+
     beforeEach(() => {
         deps = createMocks(mockData)
         gameService = createGameService(
