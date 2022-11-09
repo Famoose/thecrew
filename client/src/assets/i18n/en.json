@@ -31,7 +31,7 @@
             "game_description_1": "The Crew is a cooperative card game for 2 - 5 players. The goal of the game is to complete missions together.",
             "game_description_2": "For each mission you have to master different tasks, which are randomly distributed among the players. Will you manage to complete all the missions through good communication and cooperation and thus finish the mission successfully?",
             "game_description_3": "Fancy an exciting mission? Search for a lobby and join a crew or create your own lobby and find members for your crew by sharing the link to the game.\n\nAny questions? You can find the game rules in the upper left corner.\n",
-            "game_description_4": "Any questions? You can find the game rules in the upper left corner."
+            "game_description_4": "Any questions? You can find the game rules in the upper right corner."
         },
         "game": {
             "result_won": "Your team won the mission",
