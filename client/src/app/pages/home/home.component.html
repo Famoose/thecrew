@@ -1,10 +1,21 @@
 <div class="background-image"></div>
+<button
+    class="game-rules btn btn-lg btn-primary"
+    routerLink="/rules"
+    routerLinkActive="active"
+    ariaCurrentWhenActive="page"
+>
+    {{ 'pages.rules.title' | translate }}
+</button>
 <div class="container d-flex h-100 p-3 mx-auto flex-column">
     <div class="home-container-heading">
         <h1 class="heading">The Crew</h1>
     </div>
     <div class="home-div-info">
-        <p>{{ 'pages.home.game_description' | translate }}</p>
+        <p>{{ 'pages.home.game_description_1' | translate }}</p>
+        <p>{{ 'pages.home.game_description_2' | translate }}</p>
+        <p>{{ 'pages.home.game_description_3' | translate }}</p>
+        <p>{{ 'pages.home.game_description_4' | translate }}</p>
     </div>
     <div class="home-div-buttons">
         <div class="home-container-btn">

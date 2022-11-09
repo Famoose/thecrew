@@ -30,6 +30,7 @@ import {
     LanguageService,
 } from './services/language.service'
 import { DataLangDirective } from './directives/data-lang.directive'
+import { RulesComponent } from './pages/rules/rules.component'
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http)
@@ -52,6 +53,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         LangSelectorComponent,
         LangSelectorComponent,
         DataLangDirective,
+        RulesComponent,
     ],
     imports: [
         BrowserModule,

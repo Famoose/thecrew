@@ -1,5 +1,26 @@
 {
     "pages": {
+        "rules": {
+            "title": "Spielregeln",
+            "cards": {
+                "title": "Karten ausspielen",
+                "general": "The Crew ist ein Stichspiel (ähnlich wie Jassen). Jedes Crewmitglied spielt pro Runde eine Handkarte aus. Die gespielten Karten sind der «Stich» und die Karte mit dem höchsten Wert gewinnt diesen. Es gibt fünf verschiedene Kartentypen: vier verschiedene Farben und Trumpfkarten. Die Farbkarten besitzen jeweils die Werte 1 bis 9. Trumpfkarten sind weiss und haben die Werte 1 bis 4. Die Handkarten bestehen also aus 36 Farbkarten und 4 Trumpfkarten.",
+                "play_cards": "Beim Ausspielen der Handkarten gilt Bedienzwang. Die Kartenwahl des ersten Crewmitgliedes muss von den anderen «bedient» werden. Dies bedeutet, dass du eine Karte vom gleichen Typ spielen musst, insofern du eine solche Karte hast. Hast du keine Karte des entsprechenden Typs kannst du wählen, was du ausspielen möchtest.",
+                "end_stitch": "Den Stich gewinnt das Crewmitglied, welches die höchste Karte, die den Bedienzwang erfüllt, oder die höchste Trumpfkarte ausgespielt hat. Trumpfkarten können nur dann gespielt werden, wenn nicht «bedient» werden kann oder wenn der Stich mit einer Trumpfkarte gestartet wurde (dann muss dieser Kartentyp, wenn möglich, bedient werden). Der nächste Stich wird vom Crewmitglied begonnen, das den vorherigen Stich gewonnen hat."
+            },
+            "mission": {
+                "title": "Missionen",
+                "choose_mission": "Bevor deine Crew das Spiel in der Lobby starten kann, müsst ihr aus drei verschiedenen Missionen eine auswählen. Jede Mission besteht aus verschiedenen Aufträgen, welche zufällig unter den Crewmitgliedern verteilt werden.",
+                "play_mission": "Nach Wahl der Mission kann das Spiel gestartet werden. Im Spiel ist für alle Crewmitglieder ersichtlich, wer welchen Auftrag erfüllen muss. Die Mission ist beendet, wenn alle Stiche gespielt wurden. Spielt ihr zu dritt, so hat ein Spieler zum Schluss noch eine Karte übrig. Bei 4 oder 5 Spielern braucht ihr alle Spielkarten.",
+                "end_mission": "Die Mission habt ihr erfolgreich bestanden, wenn alle Aufträge von dem Crewmitglied erfüllt wurden, welchem sie zugeteilt wurden. Die Missionen könnt ihr so oft spielen, wie ihr Lust habt."
+            },
+            "communication": {
+                "title": "Kommunikation",
+                "general": "Zusammenarbeit bedingt eine gewisse Kommunikation. Dazu steht euch der Chat zur Verfügung. Grundsätzlich gilt folgende Faustregel für den Informationsaustausch: Wenn du etwas nur weisst, weil du deine eigenen Handkarten kennst, darfst du über diese Information nicht reden.",
+                "rules": "Alle Crewmitglieder dürfen im Verlauf einer Mission 1x eine Spielkarte kommunizieren. Trumpfkarten dürfen nicht kommuniziert werden. Von Farbkarten kann die höchste, die niedrigste oder die einzige Karte einer Farbe kommuniziert werden. Die Information zu deiner Handkarte darfst du entweder vor dem ersten Stich oder jeweils in der Pause zwischen zwei aufeinanderfolgenden Stichen im Chat kommunizieren.",
+                "honesty": "The Crew setzt auf die Ehrlichkeit seiner Mitglieder und geht davon aus, dass pro Mission von jedem Mitglied lediglich eine Handkarte kommuniziert wird, welche die Kriterien erfüllt."
+            }
+        },
         "home": {
             "search_lobby": "Lobby suchen",
             "search_lobby_description": "Suche Lobbies und trete einem Spiel bei",
@@ -7,7 +28,10 @@
             "create_lobby": "Lobby erstellen",
             "create_lobby_description": "Erstelle dein eigenes Spiel und lade deine Freunde ein",
             "create_lobby_action": "Lobby erstellen",
-            "game_description": "The Crew ist ein kooperatives Kartenstichspiel für 2 – 5 Spieler. Ziel des Spiels ist es gemeinschaftlich Missionen zu bestehen.\n\nFür jede Mission gilt es verschiedene Aufträge zu meistern, die unter den Spielern zufällig verteilt werden. Gelingt es euch durch gute Kommunikation und Zusammenarbeit, alle Aufträge zu erfüllen und somit die Mission erfolgreich zu beenden?\n\nLust auf eine spannende Mission? Suche nach einer Lobby und trete einer Crew bei oder erstelle eine eigene Lobby und finde Mitglieder für deine Crew, indem du den Link zum Spiel teilst.\n\nNoch Fragen? Zu den Spielregeln gelangst du oben links."
+            "game_description_1": "The Crew ist ein kooperatives Kartenstichspiel für 2 – 5 Spieler. Ziel des Spiels ist es gemeinschaftlich Missionen zu bestehen.",
+            "game_description_2": "Für jede Mission gilt es verschiedene Aufträge zu meistern, die unter den Spielern zufällig verteilt werden. Gelingt es euch durch gute Kommunikation und Zusammenarbeit, alle Aufträge zu erfüllen und somit die Mission erfolgreich zu beenden?",
+            "game_description_3": "Lust auf eine spannende Mission? Suche nach einer Lobby und trete einer Crew bei oder erstelle eine eigene Lobby und finde Mitglieder für deine Crew, indem du den Link zum Spiel teilst.",
+            "game_description_4": "Noch Fragen? Zu den Spielregeln gelangst du oben links."
         },
         "game": {
             "result_won": "Dein Team hat die Mission bestanden",

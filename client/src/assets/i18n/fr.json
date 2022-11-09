@@ -1,5 +1,26 @@
 {
     "pages": {
+        "rules": {
+            "title": "Règles du jeu",
+            "cards": {
+                "title": "Jouer les cartes",
+                "general": "The Crew est un jeu de tirage (similaire au jeu de Jass). Chaque membre de l'équipage joue une carte en main par tour. Les cartes jouées constituent le \"pli\" et la carte avec la valeur la plus élevée le remporte. Il existe cinq types de cartes : quatre couleurs différentes et des cartes d'atout. Les cartes de couleur ont chacune une valeur de 1 à 9. Les cartes d'atout sont blanches et ont une valeur de 1 à 4. Les cartes en main se composent donc de 36 cartes de couleur et de 4 cartes d'atout.",
+                "play_cards": "Lors du jeu des cartes en main, le service est obligatoire. Le choix de carte du premier membre de l'équipage doit être \"servi\" par les autres. Cela signifie que tu dois jouer une carte du même type, dans la mesure où tu en as une. Si tu n'as pas de carte du type correspondant, tu peux choisir ce que tu veux jouer.",
+                "end_stitch": "Le pli est remporté par l'équipier qui a joué la carte la plus haute répondant à l'obligation de servir ou la carte d'atout la plus haute. Les cartes d'atout ne peuvent être jouées que s'il n'est pas possible de \"servir\" ou si le pli a été commencé avec une carte d'atout (dans ce cas, ce type de carte doit être servi si possible). Le prochain pli est commencé par le membre de l'équipage qui a gagné le pli précédent."
+            },
+            "mission": {
+                "title": "Les missions",
+                "choose_mission": "Avant que ton équipage puisse commencer le jeu dans le lobby, tu dois choisir une mission parmi trois différentes. Chaque mission se compose de différentes tâches qui sont distribuées au hasard parmi les membres de l'équipage.",
+                "play_mission": "Après avoir choisi la mission, le jeu peut être lancé. Dans le jeu, tous les membres de l'équipage peuvent voir qui doit accomplir quelle mission. La mission est terminée lorsque tous les points ont été joués. Si vous jouez à trois, il reste une carte à un joueur à la fin. À 4 ou 5 joueurs, vous avez besoin de toutes les cartes de jeu.",
+                "end_mission": "Vous avez réussi la mission lorsque tous les tâches ont été remplis par le membre d'équipage auquel ils ont été attribués. Vous pouvez jouer une mission aussi souvent que vous le souhaitez."
+            },
+            "communication": {
+                "title": "Communication",
+                "general": "La coopération implique une certaine communication. Le chat est à votre disposition pour cela. En principe, la règle d'or suivante s'applique à l'échange d'informations : si tu sais quelque chose uniquement parce que tu connais tes propres cartes en main, tu ne dois pas parler de cette information.",
+                "rules": "Tous les membres de l'équipage peuvent communiquer 1x une carte à jouer au cours d'une mission. Les cartes d'atout ne peuvent pas être communiquées. Parmi les cartes de couleur, la carte la plus haute, la plus basse ou la seule carte d'une couleur peut être communiquée. Tu peux communiquer les informations sur ta carte en main dans le chat, soit avant le premier pli, soit pendant la pause entre deux plis consécutifs.",
+                "honesty": "The Crew mise sur l'honnêteté de ses membres et part du principe que, par mission, chaque membre ne communique qu'une seule carte en main qui remplit les critères."
+            }
+        },
         "home": {
             "search_lobby": "Recherche dans le lobby",
             "search_lobby_description": "Recherchez les lobbies de jeux répertoriés à rejoindre.",
@@ -7,7 +28,10 @@
             "create_lobby": "Créer un nouveau lobby",
             "create_lobby_description": "Créez votre propre jeu et invitez vos amis",
             "create_lobby_action": "Créer un nouveau lobby",
-            "game_description": "The Crew est un jeu de cartes coopératif pour 2 à 5 joueurs. Le but du jeu est de réussir des missions en commun.\n\nPour chaque mission, il s'agit de maîtriser différentes tâches qui sont réparties au hasard entre les joueurs. Parviendrez-vous, grâce à une bonne communication et à une bonne coopération, à remplir toutes les missions et à les mener à bien ?\n\nEnvie de participer à une mission passionnante ? Cherche un lobby et rejoins un équipage ou crée ton propre lobby et trouve des membres pour ton équipage en partageant le lien vers le jeu.\n\nDes questions ? Tu peux accéder aux règles du jeu en haut à gauche. \n"
+            "game_description_1": "The Crew est un jeu de cartes coopératif pour 2 à 5 joueurs. Le but du jeu est de réussir des missions en commun.",
+            "game_description_2": "Pour chaque mission, il s'agit de maîtriser différentes tâches qui sont réparties au hasard entre les joueurs. Parviendrez-vous, grâce à une bonne communication et à une bonne coopération, à remplir toutes les missions et à les mener à bien ?",
+            "game_description_3": "Envie de participer à une mission passionnante ? Cherche un lobby et rejoins un équipage ou crée ton propre lobby et trouve des membres pour ton équipage en partageant le lien vers le jeu.",
+            "game_description_4": "Des questions ? Tu peux accéder aux règles du jeu en haut à gauche. \n"
         },
         "game": {
             "result_won": "Votre équipe a gagné la mission",

@@ -5,10 +5,15 @@ import { HomeComponent } from './pages/home/home.component'
 import { LobbyComponent } from './pages/lobby/lobby.component'
 import { IsAuthenticatedGuard } from './guard/is-authenticated.guard'
 import { GameComponent } from './pages/game/game.component'
+import { RulesComponent } from './pages/rules/rules.component'
 
 const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'home', component: HomeComponent },
+    {
+        path: 'rules',
+        component: RulesComponent,
+    },
     {
         path: 'lobbieslist',
         component: LobbiesListComponent,
