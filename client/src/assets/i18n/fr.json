@@ -3,11 +3,11 @@
         "home": {
             "search_lobby": "Recherche dans le lobby",
             "search_lobby_description": "Recherchez les lobbies de jeux répertoriés à rejoindre.",
-            "search_lobby_action": "Recherche dans le lobb",
+            "search_lobby_action": "Recherche dans le lobby",
             "create_lobby": "Créer un nouveau lobby",
             "create_lobby_description": "Créez votre propre jeu et invitez vos amis",
             "create_lobby_action": "Créer un nouveau lobby",
-            "game_description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+            "game_description": "The Crew est un jeu de cartes coopératif pour 2 à 5 joueurs. Le but du jeu est de réussir des missions en commun.\n\nPour chaque mission, il s'agit de maîtriser différentes tâches qui sont réparties au hasard entre les joueurs. Parviendrez-vous, grâce à une bonne communication et à une bonne coopération, à remplir toutes les missions et à les mener à bien ?\n\nEnvie de participer à une mission passionnante ? Cherche un lobby et rejoins un équipage ou crée ton propre lobby et trouve des membres pour ton équipage en partageant le lien vers le jeu.\n\nDes questions ? Tu peux accéder aux règles du jeu en haut à gauche. \n"
         },
         "game": {
             "result_won": "Votre équipe a gagné la mission",

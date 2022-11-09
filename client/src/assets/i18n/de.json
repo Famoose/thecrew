@@ -7,7 +7,7 @@
             "create_lobby": "Lobby erstellen",
             "create_lobby_description": "Erstelle dein eigenes Spiel und lade deine Freunde ein",
             "create_lobby_action": "Lobby erstellen",
-            "game_description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet."
+            "game_description": "The Crew ist ein kooperatives Kartenstichspiel für 2 – 5 Spieler. Ziel des Spiels ist es gemeinschaftlich Missionen zu bestehen.\n\nFür jede Mission gilt es verschiedene Aufträge zu meistern, die unter den Spielern zufällig verteilt werden. Gelingt es euch durch gute Kommunikation und Zusammenarbeit, alle Aufträge zu erfüllen und somit die Mission erfolgreich zu beenden?\n\nLust auf eine spannende Mission? Suche nach einer Lobby und trete einer Crew bei oder erstelle eine eigene Lobby und finde Mitglieder für deine Crew, indem du den Link zum Spiel teilst.\n\nNoch Fragen? Zu den Spielregeln gelangst du oben links."
         },
         "game": {
             "result_won": "Dein Team hat die Mission bestanden",
