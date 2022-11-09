@@ -8,11 +8,28 @@
     .home-container-heading {
         margin-bottom: 3rem;
     }
+
+    .inline {
+        display: inline;
+    }
+
+    .inline-container {
+        display: flex;
+    }
+    i.inline {
+        margin-left: 5px;
+    }
 }
 
 @media (max-width: 699px) {
     .heading {
         text-align: left;
+    }
+    .inline {
+        margin-left: 0px;
+    }
+    p.inline {
+        margin-bottom: 0px;
     }
 }
 
