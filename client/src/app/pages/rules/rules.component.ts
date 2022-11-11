@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core'
+import { Component } from '@angular/core'
+import { Location } from '@angular/common'
 
 @Component({
     selector: 'app-rules',
     templateUrl: './rules.component.html',
     styleUrls: ['./rules.component.scss'],
 })
-export class RulesComponent implements OnInit {
-    constructor() {}
+export class RulesComponent {
+    constructor(private location: Location) {}
 
-    ngOnInit(): void {
-        console.log('Hello rules')
+    back(): void {
+        this.location.back()
     }
 }
