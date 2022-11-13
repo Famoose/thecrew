@@ -10,15 +10,15 @@
             },
             "mission": {
                 "title": "Missionen",
-                "choose_mission": "Bevor der Lobby Besitzer euer Crew das Spiel in der Lobby starten kann, müsst ihr aus drei verschiedenen Missionen eine auswählen. Jede Mission besteht aus verschiedenen Aufträgen, welche zufällig unter den Crewmitgliedern verteilt werden.",
+                "choose_mission": "Bevor der Lobby Besitzer euer Crew das Spiel starten kann, müsst ihr aus drei verschiedenen Missionen eine auswählen. Jede Mission besteht aus verschiedenen Aufträgen, welche zufällig unter den Crewmitgliedern verteilt werden.",
                 "play_mission": "Nach Wahl der Mission kann das Spiel gestartet werden. Im Spiel ist für alle Crewmitglieder ersichtlich, wer welchen Auftrag erfüllen muss. Die Mission ist beendet, wenn alle Stiche gespielt wurden. Spielt ihr zu dritt, so hat ein Spieler zum Schluss noch eine Karte übrig. Bei 4 oder 5 Spielern braucht ihr alle Spielkarten.",
                 "end_mission": "Die Mission habt ihr erfolgreich bestanden, wenn alle Aufträge von dem Crewmitglied erfüllt wurden, welchem sie zugeteilt wurden. Die Missionen könnt ihr so oft spielen, wie ihr Lust habt."
             },
             "communication": {
                 "title": "Kommunikation",
                 "general": "Zusammenarbeit bedingt eine gewisse Kommunikation. Dazu steht euch der Chat zur Verfügung. Grundsätzlich gilt folgende Faustregel für den Informationsaustausch: Wenn du etwas nur weisst, weil du deine eigenen Handkarten kennst, darfst du über diese Information nicht reden.",
-                "rules": "Alle Crewmitglieder dürfen im Verlauf einer Mission 1x eine Spielkarte kommunizieren. Trumpfkarten dürfen nicht kommuniziert werden. Von Farbkarten kann die höchste, die niedrigste oder die einzige Karte einer Farbe kommuniziert werden. Die Information zu deiner Handkarte darfst du entweder vor dem ersten Stich oder jeweils in der Pause zwischen zwei aufeinanderfolgenden Stichen im Chat kommunizieren. Dies gilt mit einer Ausnahme. Das Crewmitglied, welches die höchste Trumpfkarte (weisse 4) auf der Hand hat, muss dies vor Beginn des ersten Stichs den anderen im Chat mitteilen. Dieses Crewmitglied kommuniziert somit 2x. Ganz zu Beginn der Mission die Trumpfkarte und anschliessend nach den gleichen Regeln wie alle anderen Spieler noch höchstens 1x im Verlaufe der Mission.",
-                "honesty": "The Crew setzt auf die Ehrlichkeit seiner Mitglieder und geht davon aus, dass pro Mission von jedem Mitglied lediglich eine Handkarte kommuniziert wird, welche die Kriterien erfüllt."
+                "rules": "Alle Crewmitglieder dürfen im Verlauf einer Mission 1x eine Spielkarte kommunizieren. Trumpfkarten dürfen nicht kommuniziert werden. Von Farbkarten kann die höchste, die niedrigste oder die einzige Karte einer Farbe kommuniziert werden. Die Information zu deiner Handkarte darfst du entweder vor dem ersten Stich oder jeweils in der Pause zwischen zwei aufeinanderfolgenden Stichen im Chat kommunizieren. Dies gilt mit einer Ausnahme. Das Crewmitglied, welches die höchste Trumpfkarte (weisse 4) auf der Hand hat, muss dies vor Beginn des ersten Stichs den anderen im Chat mitteilen. Dieses Crewmitglied kommuniziert somit 2x.",
+                "honesty": "The Crew setzt auf die Ehrlichkeit seiner Mitglieder und geht davon aus, dass pro Mission von jedem Mitglied lediglich eine Handkarte wie oben beschrieben kommuniziert wird."
             }
         },
         "home": {

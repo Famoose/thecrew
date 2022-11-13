@@ -5,20 +5,20 @@
             "cards": {
                 "title": "Play cards",
                 "general": "The Crew is a trick-taking game (similar to Jassen). Each crew member plays one hand card per round. The cards played are the 'trick' and the card with the highest value wins it. There are five different types of cards: four different suits and trump cards. The colour cards each have the values 1 to 9. Trump cards are white and have the values 1 to 4. The hand cards therefore consist of 36 colour cards and 4 trump cards.",
-                "play_cards": "When playing the cards in the hand, it is compulsory to serve them. The card choice of the first crew member must be \"served\" by the others. This means that you must play a card of the same type, if you have such a card. If you do not have a card of the same type, you can choose what you want to play. The very first trick is started by the owner of your lobby.",
-                "end_stitch": "The trick is won by the crew member who has played the highest card that fulfils the service constraint or the highest trump card. Trump cards can only be played if it is not possible to \"serve\" or if the trick was started with a trump card (then this card type must be served if possible). The next trick is started by the crew member who won the previous trick."
+                "play_cards": "When playing your hand cards you have to play the type of card demanded by the first player of that trick, when ever possible. If you do not have a card of the same type, you can choose what you want to play. The very first trick is started by the owner of your lobby.",
+                "end_stitch": "The trick is won by the crew member who has played the highest card of the demanded type or the highest trump card. Trump cards can only be played if it is not possible to play the type of card demanded or if the trick was started with a trump card (then this card type must be played if possible). The next trick is started by the crew member who won the previous trick."
             },
             "mission": {
                 "title": "Missions",
-                "choose_mission": "Before the lobby owner of your crew can start the game in the lobby, you have to choose one of three different missions. Each mission consists of different tasks, which are randomly distributed among the crew members.",
-                "play_mission": "After choosing the mission, the game can be started. In the game, all crew members can see who has to complete which mission. The mission is finished when all tricks have been played. If you are playing with three players, one player has one card left at the end. If there are 4 or 5 players, you need all the cards.",
-                "end_mission": "You have successfully completed the mission when all the orders have been fulfilled by the crew member to whom they were assigned. You can play the missions as often as you like."
+                "choose_mission": "Before the lobby owner of your crew can start the game, you have to choose one of three different missions. Each mission consists of different tasks, which are randomly distributed among the crew members.",
+                "play_mission": "After choosing the mission, the game can be started. In the game, all crew members can see who has to complete which task. The mission is finished when all tricks have been played. If you are playing with three players, one player has one card left at the end. If there are 4 or 5 players, you need all the cards.",
+                "end_mission": "You have successfully completed the mission when all the tasks have been fulfilled by the crew member to whom they were assigned. You can play the missions as often as you like."
             },
             "communication": {
                 "title": "Communication",
                 "general": "Cooperation requires a certain amount of communication. The chat is available for this purpose. Basically, the following rule of thumb applies to the exchange of information: If you only know something because you know your own hand cards, you must not talk about this information.",
-                "rules": "All crew members may communicate 1x playing card during the course of a mission. Trump cards may not be communicated. Of the colour cards, the highest, the lowest or the only card of a colour may be communicated. You may communicate the information about your hand card either before the first trick or in the break between two consecutive tricks in the chat. This applies with one exception. The crew member who has the highest trump card (white 4) in his hand must communicate this to the others in the chat before the first trick begins. This crew member therefore communicates 2x. At the very beginning of the mission the trump card and then according to the same rules as all other players at most 1x during the mission.",
-                "honesty": "The Crew relies on the honesty of its members and assumes that only one hand card per mission is communicated by each member that meets the criteria."
+                "rules": "All crew members may communicate 1x playing card during the course of a mission. Trump cards may not be communicated. Of the colour cards, the highest or the lowest or the only card of a colour may be communicated. You may communicate the information about your hand card either before the first trick or in the break between two consecutive tricks in the chat. This applies with one exception. The crew member who has the highest trump card (white 4) in his hand must communicate this to the others in the chat before the first trick begins. This crew member therefore communicates 2x.",
+                "honesty": "The Crew relies on the honesty of its members and assumes that only one hand card per mission is communicated by each member as explained above."
             }
         },
         "home": {
@@ -29,7 +29,7 @@
             "create_lobby_description": "Create your own game and invite your friends.",
             "create_lobby_action": "Create lobby",
             "game_description_1": "The Crew is a cooperative card game for 2 - 5 players. The goal of the game is to complete missions together.",
-            "game_description_2": "For each mission you have to master different tasks, which are randomly distributed among the players. Will you manage to complete all the missions through good communication and cooperation and thus finish the mission successfully?",
+            "game_description_2": "For each mission you have to master different tasks, which are randomly distributed among the players. Will you manage to complete all the quests through good communication and cooperation and thus finish the mission successfully?",
             "game_description_3": "Fancy an exciting mission? Search for a lobby and join a crew or create your own lobby and find members for your crew by sharing the link to the game.\n\nAny questions? You can find the game rules in the upper left corner.\n",
             "game_description_4": "Any questions? You can find the game rules in the upper right corner."
         },
